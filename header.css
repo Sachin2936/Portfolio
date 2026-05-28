@@ -1,0 +1,116 @@
+/* ==========================================================================
+   HEADER MODULAR STYLESHEET
+   ========================================================================== */
+
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: hsla(220, 16%, 6%, 0.82);
+  border-bottom: 1px solid var(--border-steel);
+  z-index: 1000;
+  backdrop-filter: blur(14px);
+  transition: var(--transition-smooth);
+}
+
+.header-container {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text-white);
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  font-size: 14px;
+}
+
+.bat-logo {
+  color: var(--gold-primary);
+  filter: drop-shadow(0 0 5px var(--gold-primary-glow));
+  transition: var(--transition-smooth);
+}
+
+.logo:hover .bat-logo {
+  color: var(--text-white);
+  transform: scale(1.08) rotate(3deg);
+  filter: drop-shadow(0 0 10px var(--gold-primary-glow));
+}
+
+.nav-menu {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--text-grey);
+  letter-spacing: 0.08em;
+  position: relative;
+  padding: 8px 0;
+  transition: var(--transition-smooth);
+}
+
+/* Beautiful springing bottom highlight transition */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1.5px;
+  background-color: var(--gold-primary);
+  box-shadow: 0 0 8px var(--gold-primary);
+  transition: var(--transition-spring);
+  transform: translateX(-50%);
+}
+
+.nav-link:hover {
+  color: var(--gold-primary);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: var(--gold-primary);
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Tablets & Mobile Nav Adjustments */
+@media (max-width: 768px) {
+  .main-header {
+    height: auto;
+    padding: 16px 0;
+  }
+  .header-container {
+    flex-direction: column;
+    gap: 16px;
+    padding: 0 20px;
+  }
+  .nav-menu {
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

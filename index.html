@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sachin Singh | Portfolio</title>
+  <meta name="description" content="Sachin Singh — Software Engineer. A superhero-themed developer portfolio.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;600;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="main.css?v=24">
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div id="cur-dot"></div>
+  <div id="cur-ring"></div>
+
+  <!-- Scroll Progress -->
+  <div id="scroll-prog"></div>
+
+  <!-- ═══════════ NAV ═══════════ -->
+  <nav id="nav">
+    <div class="nav-wrap">
+      <a href="#home" class="nav-brand">
+        <svg class="bat-mini" viewBox="0 0 100 45" width="36" height="16">
+          <path d="M50,4 C34,4 22,22 4,14 C14,26 30,26 40,40 C45,34 47,24 50,27 C53,24 55,34 60,40 C70,26 86,26 96,14 C78,22 66,4 50,4Z" fill="currentColor"/>
+        </svg>
+        <span>SACHIN</span>
+      </a>
+      <div class="nav-links">
+        <a href="#home"       class="nl" data-hero="batman">Home</a>
+        <a href="#projects"   class="nl" data-hero="spiderman">Projects</a>
+        <a href="#journey"    class="nl" data-hero="ironman">Journey</a>
+        <a href="#activities" class="nl" data-hero="flash">Activities</a>
+        <a href="#profiles"   class="nl" data-hero="venom">Profiles</a>
+      </div>
+      <button id="sound-toggle" aria-label="Toggle Sound Effects" class="btn-sound-control">
+        <span class="sound-wave">
+          <span class="sw-bar"></span>
+          <span class="sw-bar"></span>
+          <span class="sw-bar"></span>
+          <span class="sw-bar"></span>
+        </span>
+        <span class="sound-text">SOUND: ON</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════ HERO — BATMAN ═══════════ -->
+  <section id="home" class="hero-section batman-section">
+
+    <!-- Gotham City Skyline -->
+    <div class="gotham-skyline" aria-hidden="true">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none" class="skyline-svg">
+        <path d="M0,320 L0,200 L60,200 L60,160 L80,160 L80,120 L100,120 L100,100 L120,100 L120,80 L140,80 L140,100 L160,100 L160,140 L180,140 L180,200 L220,200 L220,160 L240,160 L240,80 L260,80 L260,60 L280,60 L280,40 L300,40 L300,20 L310,20 L310,40 L320,40 L320,60 L340,60 L340,80 L360,80 L360,100 L380,100 L380,80 L400,80 L400,60 L420,60 L420,40 L440,40 L440,100 L460,100 L460,140 L480,140 L480,200 L520,200 L520,160 L540,160 L540,100 L560,100 L560,80 L580,80 L580,60 L600,60 L600,30 L620,30 L620,10 L630,10 L630,30 L640,30 L640,60 L660,60 L660,80 L680,80 L680,100 L700,100 L700,120 L720,120 L720,80 L740,80 L740,60 L760,60 L760,40 L780,40 L780,20 L800,20 L800,40 L820,40 L820,60 L840,60 L840,80 L860,80 L860,100 L880,100 L880,120 L900,120 L900,140 L920,140 L920,100 L940,100 L940,80 L960,80 L960,60 L980,60 L980,80 L1000,80 L1000,100 L1020,100 L1020,120 L1040,120 L1040,140 L1060,140 L1060,160 L1080,160 L1080,200 L1120,200 L1120,140 L1140,140 L1140,100 L1160,100 L1160,60 L1180,60 L1180,40 L1200,40 L1200,60 L1220,60 L1220,80 L1240,80 L1240,100 L1260,100 L1260,120 L1280,120 L1280,160 L1300,160 L1300,200 L1440,200 L1440,320 Z" fill="rgba(0,0,0,0.9)"/>
+      </svg>
+    </div>
+
+    <!-- Bat Signal -->
+    <div class="bat-signal-wrapper" aria-hidden="true">
+      <div class="bat-signal-beam"></div>
+      <div class="bat-signal-circle">
+        <svg class="bat-logo-big" viewBox="0 0 200 90">
+          <path d="M100,8 C68,8 44,44 8,28 C28,52 60,52 80,80 C90,68 94,48 100,54 C106,48 110,68 120,80 C140,52 172,52 192,28 C156,44 132,8 100,8Z" fill="#0a0a0a"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Rain Canvas -->
+    <canvas id="batman-rain"></canvas>
+
+    <!-- Superhero Background Layer -->
+    <div class="section-hero-bg" data-hero="batman" aria-hidden="true">
+      <div class="bg-hero-glow batman-bg-glow"></div>
+      <img src="batman.png" alt="" class="bg-hero-img">
+      <div class="bg-hero-quote-box">
+        <span class="bg-hero-symbol">🦇</span>
+        <p class="bg-hero-quote">"I AM THE NIGHT"</p>
+        <span class="bg-hero-sound-hint">🔊 ACTIVATE BAT-SIGNAL</span>
+      </div>
+    </div>
+
+    <div class="hero-content-batman">
+      <div class="batman-eyebrow">Gotham's Finest Developer</div>
+      <h1 class="batman-name">
+        <span class="bn-line" id="bn1">SACHIN</span>
+        <span class="bn-line" id="bn2">SINGH</span>
+      </h1>
+      <div class="batman-role">Software Engineer &amp; Full Stack Developer</div>
+      <p class="batman-bio">I am the night. I build secure, scalable, and extraordinary applications — with the precision of a detective and the power of a billionaire engineer.</p>
+      <div class="batman-stats-row">
+        <div class="bstat">
+          <span class="bstat-num" data-target="4">0</span>
+          <span class="bstat-label">Years Training</span>
+        </div>
+        <div class="bstat">
+          <span class="bstat-num" data-target="750">0</span>
+          <span class="bstat-label">Problems Solved</span>
+        </div>
+        <div class="bstat">
+          <span class="bstat-num" data-target="12">0</span>
+          <span class="bstat-label">Projects Deployed</span>
+        </div>
+      </div>
+      <div class="batman-cta">
+        <a href="#projects" class="btn-bat">ENTER THE CAVE</a>
+        <a href="#journey"  class="btn-bat-ghost">MY ORIGIN STORY</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ PROJECTS — ARCADE GAME ═══════════ -->
+  <section id="projects" class="arcade-section">
+    <!-- Game Canvas Background -->
+    <canvas id="arcade-game"></canvas>
+
+    <!-- Game UI Overlay -->
+    <div id="arcade-ui">
+      <div id="arcade-start-screen">
+        <h2>JUMP TO REVEAL</h2>
+        <p>Hit the [ ? ] blocks from below to unlock projects.</p>
+        <p class="controls">Controls: A/D or Left/Right to Move / Space to Jump</p>
+        <button id="arcade-start-btn">START GAME</button>
+      </div>
+      <div id="arcade-hud" style="display: none;">
+        <div class="hud-score">SCORE: <span id="score-val">0</span></div>
+        <div class="hud-status">PROJECTS REVEALED: <span id="projects-revealed-val">0</span> / <span id="projects-total-val">3</span></div>
+      </div>
+      <div id="arcade-victory-screen" style="display: none;">
+        <h2>ALL PROJECTS DECRYPTED</h2>
+        <p>Access Granted.</p>
+      </div>
+    </div>
+
+    <div class="section-inner arcade-content">
+      <div class="arcade-section-header">
+        <h2 class="arcade-title">PROJECT ARCHIVE</h2>
+        <div class="arcade-divider"></div>
+      </div>
+
+      <div class="arcade-projects-grid" id="arcade-projects-grid">
+        
+        <!-- Project 1 -->
+        <div class="arcade-project-card locked" data-index="0">
+          <div class="apc-inner">
+            <div class="sc-top">
+              <span class="sc-num">01</span>
+            </div>
+            <div class="sc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+            </div>
+            <h3 class="sc-name">E-Commerce Platform</h3>
+            <p class="sc-desc">Real-time sales dashboard with WebSocket updates, inventory tracking, and user analytics across cloud deployments.</p>
+            <div class="sc-tags"><span>React</span><span>TypeScript</span><span>WebSockets</span><span>PostgreSQL</span></div>
+            <a href="#" class="sc-link">VIEW PROJECT →</a>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="arcade-project-card locked" data-index="1">
+          <div class="apc-inner">
+            <div class="sc-top">
+              <span class="sc-num">02</span>
+            </div>
+            <div class="sc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/></svg>
+            </div>
+            <h3 class="sc-name">Algorithm Visualizer</h3>
+            <p class="sc-desc">Interactive canvas tool animating 15+ sorting and pathfinding algorithms with step-by-step trace mode and real-time analysis.</p>
+            <div class="sc-tags"><span>JavaScript</span><span>Canvas API</span><span>HTML5</span></div>
+            <a href="#" class="sc-link">VIEW PROJECT →</a>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="arcade-project-card locked" data-index="2">
+          <div class="apc-inner">
+            <div class="sc-top">
+              <span class="sc-num">03</span>
+            </div>
+            <div class="sc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </div>
+            <h3 class="sc-name">Secure Auth System</h3>
+            <p class="sc-desc">Cryptographic authentication validating credentials in &lt;3.5ms. Zero dependencies, full audit trail, Redis token caching.</p>
+            <div class="sc-tags"><span>Node.js</span><span>Docker</span><span>AWS</span><span>Redis</span></div>
+            <a href="#" class="sc-link">VIEW PROJECT →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ JOURNEY — MYSTIC CODEX ═══════════ -->
+  <section id="journey" class="mystic-section">
+    <canvas id="mystic-canvas"></canvas>
+
+    <!-- Soft aurora atmospheric layers -->
+    <div class="aurora-layer aurora-1"></div>
+    <div class="aurora-layer aurora-2"></div>
+    <div class="aurora-layer aurora-3"></div>
+
+    <div class="section-inner">
+      <div class="mystic-header">
+        <div class="mystic-eyebrow">✦ &nbsp; FOUR YEARS OF BECOMING &nbsp; ✦</div>
+        <h2 class="mystic-title">The Codex</h2>
+        <p class="mystic-subtitle">A journey written in knowledge — unveiled chapter by chapter</p>
+      </div>
+
+      <!-- Single cinematic reveal frame -->
+      <div class="cinema-frame" id="cinema-frame">
+
+        <!-- Letterbox bars (cinematic feel) -->
+        <div class="cf-bar cf-bar-top"></div>
+        <div class="cf-bar cf-bar-bottom"></div>
+
+        <!-- Main text stage -->
+        <div class="cf-stage">
+          <div class="cf-label" id="cf-label"></div>
+          <div class="cf-text"  id="cf-text"></div>
+        </div>
+
+        <!-- Year progress dots + counter -->
+        <div class="cf-meta">
+          <div class="cf-dots">
+            <span class="cf-dot" data-i="0"></span>
+            <span class="cf-dot" data-i="1"></span>
+            <span class="cf-dot" data-i="2"></span>
+            <span class="cf-dot" data-i="3"></span>
+          </div>
+          <div class="cf-counter" id="cf-counter">&nbsp;</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ ACTIVITIES — FLASH / SPEED ═══════════ -->
+  <section id="activities" class="flash-section">
+    <canvas id="lightning-canvas"></canvas>
+
+    <!-- Superhero Background Layer -->
+    <div class="section-hero-bg" data-hero="flash" aria-hidden="true">
+      <div class="bg-hero-glow flash-bg-glow"></div>
+      <img src="flash.png" alt="" class="bg-hero-img">
+      <div class="bg-hero-quote-box">
+        <span class="bg-hero-symbol">⚡</span>
+        <p class="bg-hero-quote">"THE FASTEST MAN ALIVE"</p>
+        <span class="bg-hero-sound-hint">🔊 SPEED FORCE LIGHTNING</span>
+      </div>
+    </div>
+
+    <div class="section-inner">
+      <div class="flash-header">
+        <div class="flash-bolt" aria-hidden="true">
+          <svg viewBox="0 0 40 60" width="40" height="60">
+            <path d="M25,2 L8,32 L18,32 L15,58 L32,28 L22,28 Z" fill="#FFD700" stroke="#FF8C00" stroke-width="1"/>
+          </svg>
+        </div>
+        <h2 class="flash-title">SPEED RUNS</h2>
+        <div class="flash-sub">Activities &amp; Domains</div>
+      </div>
+
+      <div class="flash-grid">
+
+        <div class="flash-card" data-delay="0">
+          <div class="flash-number">01</div>
+          <div class="flash-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"/></svg>
+          </div>
+          <h3 class="flash-card-title">Algorithms</h3>
+          <p class="flash-card-desc">750+ LeetCode problems. Graph theory, DP, greedy — solved at the speed of lightning.</p>
+          <div class="flash-speed-bar">
+            <div class="fsb-fill" data-pct="90"></div>
+          </div>
+          <div class="flash-tags"><span>LeetCode</span><span>Graph Theory</span><span>DP</span></div>
+        </div>
+
+        <div class="flash-card" data-delay="80">
+          <div class="flash-number">02</div>
+          <div class="flash-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          </div>
+          <h3 class="flash-card-title">Open Source</h3>
+          <p class="flash-card-desc">Contributing to developer tools, server protocols, and dashboard libraries.</p>
+          <div class="flash-speed-bar">
+            <div class="fsb-fill" data-pct="75"></div>
+          </div>
+          <div class="flash-tags"><span>GitHub</span><span>OSS</span><span>APIs</span></div>
+        </div>
+
+        <div class="flash-card" data-delay="160">
+          <div class="flash-number">03</div>
+          <div class="flash-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="flash-card-title">Security</h3>
+          <p class="flash-card-desc">Cryptographic auth tokens, pen testing, auditing codebases for injection flaws.</p>
+          <div class="flash-speed-bar">
+            <div class="fsb-fill" data-pct="82"></div>
+          </div>
+          <div class="flash-tags"><span>Crypto</span><span>Pen Testing</span><span>Zero-Trust</span></div>
+        </div>
+
+        <div class="flash-card" data-delay="240">
+          <div class="flash-number">04</div>
+          <div class="flash-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75M9 11a4 4 0 100-8 4 4 0 000 8z"/></svg>
+          </div>
+          <h3 class="flash-card-title">Leadership</h3>
+          <p class="flash-card-desc">Mentoring teams, managing incidents, writing post-mortems. Moving at Flash speed.</p>
+          <div class="flash-speed-bar">
+            <div class="fsb-fill" data-pct="70"></div>
+          </div>
+          <div class="flash-tags"><span>Mentoring</span><span>Incident Mgmt</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ SECTION 5: CONNECT / PROFILE ═══════════ -->
+  <section id="connect" class="aurora-section">
+
+    <!-- Aurora background blobs -->
+    <div class="aurora-bg" aria-hidden="true">
+      <div class="aurora-blob a1"></div>
+      <div class="aurora-blob a2"></div>
+      <div class="aurora-blob a3"></div>
+    </div>
+
+    <div class="section-inner">
+
+      <!-- Section Label -->
+      <div class="aurora-label">
+        <span class="label-dot"></span>
+        <span>Available for opportunities</span>
+      </div>
+
+      <h2 class="aurora-headline">Let's <em>Connect</em></h2>
+      <p class="aurora-tagline">Find me across the internet — building, solving & shipping.</p>
+
+      <!-- Bento Grid -->
+      <div class="bento-grid">
+
+        <!-- CARD 1 — LinkedIn (tall, left) -->
+        <a href="https://linkedin.com/in/sachinsingh" target="_blank" rel="noopener"
+           class="bento-card bento-li" data-tilt>
+          <div class="bento-bg-shine"></div>
+          <div class="bento-top">
+            <div class="bento-platform-badge">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+              </svg>
+              LinkedIn
+            </div>
+            <div class="bento-arrow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </div>
+          </div>
+          <div class="bento-big-icon li-icon">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+            </svg>
+          </div>
+          <div class="bento-footer">
+            <p class="bento-title">LinkedIn</p>
+            <p class="bento-sub">500+ connections · Open to work</p>
+          </div>
+        </a>
+
+        <!-- CARD 2 — LeetCode (wide hero) -->
+        <a href="https://leetcode.com/u/sachinsingh/" target="_blank" rel="noopener"
+           class="bento-card bento-lc" data-tilt>
+          <div class="bento-bg-shine"></div>
+          <div class="bento-top">
+            <div class="bento-platform-badge lc-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
+              LeetCode
+            </div>
+            <div class="bento-arrow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </div>
+          </div>
+          <div class="lc-stats-wrap">
+            <div class="lc-ring-bento">
+              <svg viewBox="0 0 120 120" width="120" height="120">
+                <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,185,0,0.15)" stroke-width="8"/>
+                <circle id="lc-venom-arc" cx="60" cy="60" r="50" fill="none" stroke="#FFA116" stroke-width="8"
+                  stroke-dasharray="314" stroke-dashoffset="314" stroke-linecap="round"
+                  transform="rotate(-90 60 60)"/>
+              </svg>
+              <div class="lc-ring-center">
+                <span id="lc-venom-num" data-target="350">0</span>
+                <small>solved</small>
+              </div>
+            </div>
+            <div class="lc-pills">
+              <div class="lc-pill easy"><span>Easy</span><b>150+</b></div>
+              <div class="lc-pill med"><span>Med</span><b>140+</b></div>
+              <div class="lc-pill hard"><span>Hard</span><b>60+</b></div>
+            </div>
+          </div>
+          <div class="bento-footer">
+            <p class="bento-title">LeetCode</p>
+            <p class="bento-sub">Top Competitive Programmer</p>
+          </div>
+        </a>
+
+        <!-- CARD 3 — Streak / Fun Stat (small top-right) -->
+        <div class="bento-card bento-streak" data-tilt>
+          <div class="bento-bg-shine"></div>
+          <div class="streak-emoji">🔥</div>
+          <div class="streak-num" data-count="365">0</div>
+          <p class="streak-label">Days of coding</p>
+        </div>
+
+        <!-- CARD 4 — GitHub (wide bottom) -->
+        <a href="https://github.com/sachinsingh2101" target="_blank" rel="noopener"
+           class="bento-card bento-gh" data-tilt>
+          <div class="bento-bg-shine"></div>
+          <div class="bento-top">
+            <div class="bento-platform-badge gh-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              GitHub
+            </div>
+            <div class="bento-arrow">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </div>
+          </div>
+          <!-- Contribution bars -->
+          <div class="gh-bars-wrap">
+            <div class="gh-bars" id="gh-bars"></div>
+          </div>
+          <div class="bento-footer">
+            <p class="bento-title">GitHub</p>
+            <p class="bento-sub">sachinsingh2101 · Open Source Contributor</p>
+          </div>
+        </a>
+
+        <!-- CARD 5 — Email CTA (small) -->
+        <a href="mailto:sachinsingh@example.com" class="bento-card bento-cta" data-tilt>
+          <div class="bento-bg-shine"></div>
+          <div class="cta-icon">✉️</div>
+          <p class="cta-text">Drop me an email</p>
+          <div class="cta-pulse-ring"></div>
+        </a>
+
+      </div><!-- /bento-grid -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <svg class="foot-bat" viewBox="0 0 100 45" width="50" height="22">
+        <path d="M50,4 C34,4 22,22 4,14 C14,26 30,26 40,40 C45,34 47,24 50,27 C53,24 55,34 60,40 C70,26 86,26 96,14 C78,22 66,4 50,4Z" fill="rgba(255,215,0,0.4)"/>
+      </svg>
+      <p>Designed &amp; Coded by <strong>Sachin Singh</strong> &nbsp;·&nbsp; 2026</p>
+      <p class="foot-sub">"It's not who I am underneath, but what I build that defines me."</p>
+    </div>
+  </footer>
+
+  <!-- Click Ripple container -->
+  <div id="ripple-container"></div>
+
+  <script src="tilt.js"></script>
+  <script src="hero.js?v=23"></script>
+  <script src="mario-game.js"></script>
+</body>
+</html>

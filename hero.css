@@ -1,0 +1,147 @@
+/* ==========================================================================
+   HERO / HOME SECTION MODULAR STYLESHEET
+   Includes: Floating Bat Signal, Searchlight spotlight sweep behind logo
+   ========================================================================== */
+
+.hero-section {
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
+}
+
+.hero-card {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 60px;
+}
+
+.hero-symbol-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+/* BRAND NEW UNIQUE GOLD SPOTLIGHT SEARCHLIGHT SWEEP EFFECT */
+.hero-symbol-wrapper::before {
+  content: '';
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--gold-primary-glow) 0%, transparent 65%);
+  filter: blur(12px);
+  z-index: 0;
+  pointer-events: none;
+  animation: searchlight-sweep 6s ease-in-out infinite alternate;
+}
+
+.hero-bat-signal {
+  color: var(--gold-primary);
+  filter: drop-shadow(0 0 8px var(--gold-primary-glow));
+  z-index: 2;
+  position: relative;
+  transform-origin: center;
+  animation: bat-float-spring 5s ease-in-out infinite;
+  transition: var(--transition-smooth);
+}
+
+.hero-card:hover .hero-bat-signal {
+  color: var(--text-white);
+  filter: 
+    drop-shadow(0 0 20px var(--gold-primary-glow))
+    drop-shadow(0 0 40px rgba(255, 255, 255, 0.15));
+}
+
+.hero-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 2;
+}
+
+.hero-greeting {
+  font-size: 12px;
+  color: var(--gold-primary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: 44px;
+  font-weight: 700;
+  color: var(--text-white);
+  letter-spacing: 0.08em;
+}
+
+.hero-subtitle {
+  font-size: 13px;
+  color: var(--text-grey);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-left: 2px solid var(--gold-primary);
+  padding-left: 12px;
+}
+
+.hero-text {
+  color: var(--text-grey);
+  line-height: 1.7;
+  font-size: 14px;
+  font-weight: 300;
+  max-width: 640px;
+  margin-bottom: 8px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 20px;
+}
+
+/* Tablets Adjustments */
+@media (max-width: 1024px) {
+  .hero-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 40px;
+  }
+  .hero-symbol-wrapper {
+    margin: 0 auto 12px;
+    width: 220px;
+  }
+  .hero-symbol-wrapper::before {
+    width: 150px;
+    height: 150px;
+  }
+  .hero-subtitle {
+    border-left: none;
+    border-bottom: 2px solid var(--gold-primary);
+    padding-left: 0;
+    padding-bottom: 8px;
+    display: inline-block;
+    margin: 0 auto;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 32px;
+  }
+  .hero-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .hero-actions .btn {
+    width: 100%;
+  }
+}

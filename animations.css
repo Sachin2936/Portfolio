@@ -1,0 +1,353 @@
+/* ==========================================================================
+   ANIMATIONS & KEYFRAMES MODULAR STYLESHEET
+   15 EYE-DAZZLING PREMIUM VISUAL EFFECTS ENGINE
+   ========================================================================== */
+
+/* ---------------------------------------------------------
+   1. LIQUID SCROLL PROGRESS INDICATOR
+   --------------------------------------------------------- */
+.scroll-progress-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg, 
+    var(--gold-dark) 0%, 
+    var(--gold-primary) 50%, 
+    var(--gold-light) 100%
+  );
+  z-index: 10000;
+  width: 0%;
+  box-shadow: 0 0 12px var(--gold-primary);
+  transition: width 0.15s cubic-bezier(0.1, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------
+   2. CUSTOM HUD POINTER HALO & EXPANDING RIPPLES
+   --------------------------------------------------------- */
+.custom-hud-cursor {
+  position: fixed;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  z-index: 20000;
+  transform: translate(-50%, -50%);
+  display: none;
+  transition: 
+    width 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@media (pointer: fine) {
+  body.gotham-theme {
+    cursor: none; /* Hide native cursor */
+  }
+  .custom-hud-cursor {
+    display: block;
+  }
+}
+
+.pointer-ring {
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--gold-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--gold-primary-glow);
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: cursor-rotate 6s linear infinite;
+  transition: var(--transition-smooth);
+}
+
+.pointer-dot {
+  width: 4px;
+  height: 4px;
+  background-color: var(--text-white);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 4px white;
+}
+
+/* Cursor states on hover of interactive targets */
+.custom-hud-cursor.hovering {
+  width: 40px;
+  height: 40px;
+}
+
+.custom-hud-cursor.hovering .pointer-ring {
+  border-color: var(--text-white);
+  box-shadow: 
+    0 0 14px var(--gold-primary),
+    0 0 28px var(--gold-primary-glow);
+  border-width: 1.5px;
+}
+
+/* 3. CLICK EXPLODING RIPPLE EFFECT */
+.click-ripple {
+  position: fixed;
+  border: 1px solid var(--gold-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 19999;
+  transform: translate(-50%, -50%);
+  animation: click-ripple-expand 0.6s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes click-ripple-expand {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 1;
+    box-shadow: 0 0 4px var(--gold-primary-glow);
+  }
+  100% {
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+    box-shadow: 0 0 20px transparent;
+    border-color: var(--text-white);
+  }
+}
+
+/* ---------------------------------------------------------
+   4. METALLIC RADIAL SPOTLIGHT GLARE OVERLAYS
+   --------------------------------------------------------- */
+.card-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 80%
+  );
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.project-card:hover .card-glare,
+.scrolly-card:hover .card-glare,
+.profile-card:hover .card-glare {
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------
+   5. CHROMATIC GLITCH BORDERS ON PANEL HOVERS
+   --------------------------------------------------------- */
+.project-card:hover,
+.scrolly-card:hover,
+.profile-card:hover {
+  animation: chromatic-border-jitter 0.6s ease infinite alternate;
+}
+
+@keyframes chromatic-border-jitter {
+  0% {
+    box-shadow: 
+      -2px -2px 10px hsla(0, 80%, 50%, 0.15),
+      2px 2px 10px hsla(190, 80%, 50%, 0.15),
+      0 0 20px var(--gold-primary-glow);
+  }
+  100% {
+    box-shadow: 
+      2px 2px 10px hsla(0, 80%, 50%, 0.15),
+      -2px -2px 10px hsla(190, 80%, 50%, 0.15),
+      0 0 20px var(--gold-primary-glow);
+  }
+}
+
+/* ---------------------------------------------------------
+   6. METALLIC LIQUID BORDER SWEEPS
+   --------------------------------------------------------- */
+@keyframes gold-shimmer-sweep {
+  0% { left: -150%; }
+  50% { left: 150%; }
+  100% { left: 150%; }
+}
+
+/* ---------------------------------------------------------
+   7. 3D SCROLLYTELLING ENTRY REVEALS
+   --------------------------------------------------------- */
+.scrolly-card.reveal-flip {
+  transform: rotateY(-90deg);
+  transform-origin: left center;
+}
+.scrolly-card.reveal-flip.active {
+  opacity: 1;
+  transform: rotateY(0deg);
+}
+
+.scrolly-card.reveal-slide-left {
+  transform: translateX(-150px) rotateY(45deg);
+  transform-origin: left center;
+}
+.scrolly-card.reveal-slide-left.active {
+  opacity: 1;
+  transform: translateX(0) rotateY(0deg);
+}
+
+.scrolly-card.reveal-slide-right {
+  transform: translateX(150px) rotateY(-45deg);
+  transform-origin: right center;
+}
+.scrolly-card.reveal-slide-right.active {
+  opacity: 1;
+  transform: translateX(0) rotateY(0deg);
+}
+
+.scrolly-card.reveal-unfold {
+  transform: rotateX(-90deg) scale(0.6);
+  transform-origin: top center;
+}
+.scrolly-card.reveal-unfold.active {
+  opacity: 1;
+  transform: rotateX(0deg) scale(1);
+}
+
+/* ---------------------------------------------------------
+   8. ELASTIC SPRING ACTIVE NAV UNDERLINES
+   --------------------------------------------------------- */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1.5px;
+  background-color: var(--gold-primary);
+  box-shadow: 0 0 8px var(--gold-primary);
+  transition: var(--transition-spring); /* elastic bouncy transition */
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ---------------------------------------------------------
+   9. EXPLODING CLICK SCATTER PARTICLES
+   --------------------------------------------------------- */
+.click-particle {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  background: var(--gold-primary);
+  box-shadow: 0 0 6px var(--gold-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 19999;
+  transform: translate(-50%, -50%);
+  animation: scatter-particle-explosion 0.8s cubic-bezier(0.1, 0.8, 0.25, 1) forwards;
+}
+
+@keyframes scatter-particle-explosion {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(
+      calc(-50% + var(--pX, 0px)), 
+      calc(-50% + var(--pY, 0px))
+    ) scale(0.1);
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------------------------
+   10. MECHANICAL CLOCKWORK DIALS & FLY PATHS
+   --------------------------------------------------------- */
+@keyframes cursor-rotate {
+  from { transform: rotate(0deg) translate(-50%, -50%); }
+  to { transform: rotate(360deg) translate(-50%, -50%); }
+}
+
+@keyframes searchlight-sweep {
+  0% {
+    transform: translate(-30px, -20px) scale(0.9);
+    background: radial-gradient(circle, var(--gold-primary-glow) 0%, transparent 60%);
+  }
+  50% {
+    transform: translate(15px, 15px) scale(1.1);
+    background: radial-gradient(circle, hsla(42, 50%, 65%, 0.3) 0%, transparent 70%);
+  }
+  100% {
+    transform: translate(-10px, 30px) scale(0.95);
+    background: radial-gradient(circle, var(--gold-primary-glow) 0%, transparent 65%);
+  }
+}
+
+@keyframes bat-float-spring {
+  0% { transform: translateY(0) scale(1) rotate(0deg); }
+  50% { transform: translateY(-12px) scale(1.02) rotate(-1.5deg); }
+  100% { transform: translateY(0) scale(1) rotate(0deg); }
+}
+
+@keyframes clockwork-spin-clockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes clockwork-pulse {
+  0% { filter: drop-shadow(0 0 4px var(--gold-primary-glow)); }
+  100% { filter: drop-shadow(0 0 10px hsla(42, 45%, 58%, 0.45)); }
+}
+
+@keyframes status-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    box-shadow: 0 0 4px var(--gold-primary-glow);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 12px var(--gold-primary);
+  }
+}
+
+.animate-pulse {
+  animation: status-pulse 2.2s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   MANDATORY ACCESSIBILITY SAFEGUARDS
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+  
+  .hero-symbol-wrapper::before,
+  .project-card::before,
+  .gauge-ring::before,
+  .scroll-progress-glow,
+  .custom-hud-cursor {
+    display: none !important;
+  }
+  
+  .hero-bat-signal,
+  .animate-pulse,
+  .gauge-fill {
+    animation: none !important;
+  }
+  
+  .project-card:hover, .scrolly-card:hover, .profile-card:hover {
+    animation: none !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
+  }
+}

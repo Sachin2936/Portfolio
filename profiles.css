@@ -1,0 +1,125 @@
+/* ==========================================================================
+   PROFILES SECTION MODULAR STYLESHEET
+   Supports: Dial gauge rotations, profile icon glows, spring shadows
+   ========================================================================== */
+
+.profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.profile-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-steel);
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  backdrop-filter: blur(12px);
+  transition: var(--transition-smooth);
+}
+
+.profile-card:hover {
+  border-color: var(--gold-primary);
+  box-shadow: 
+    0 16px 36px rgba(0, 0, 0, 0.4),
+    0 0 20px var(--gold-primary-glow);
+  transform: translateY(-4px);
+}
+
+.profile-icon-wrapper {
+  width: 90px;
+  height: 90px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--gold-primary);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--gold-primary);
+  box-shadow: 0 0 12px var(--gold-primary-glow);
+  transition: var(--transition-smooth);
+}
+
+.profile-card:hover .profile-icon-wrapper {
+  color: var(--text-white);
+  border-color: var(--text-white);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  transform: scale(1.05) rotate(3deg);
+}
+
+.profile-svg {
+  transition: var(--transition-smooth);
+}
+
+.profile-card:hover .profile-svg {
+  filter: drop-shadow(0 0 4px var(--text-white));
+}
+
+.profile-title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  color: var(--text-white);
+  letter-spacing: 0.05em;
+}
+
+.profile-desc {
+  font-size: 13px;
+  color: var(--text-grey);
+  line-height: 1.6;
+  font-weight: 300;
+  max-width: 320px;
+}
+
+.profile-card .btn {
+  width: 100%;
+}
+
+/* BRAND NEW MECHANICAL CLOCKWORK LEETCODE RADIAL DIAL */
+.leetcode-visual {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.gauge-ring {
+  filter: drop-shadow(0 0 8px var(--gold-primary-glow));
+}
+
+/* Outer decorative mechanical ring rotating clockwise */
+.gauge-ring::before {
+  content: '';
+  position: absolute;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  border: 1px dashed var(--gold-primary-glow);
+  pointer-events: none;
+  animation: clockwork-spin-clockwise 16s linear infinite;
+}
+
+.gauge-fill {
+  transform: rotate(-90deg);
+  transform-origin: 50px 50px;
+  transition: stroke-dashoffset 2s cubic-bezier(0.25, 1, 0.5, 1);
+  animation: clockwork-pulse 4s ease-in-out infinite alternate;
+}
+
+.gauge-val {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.gauge-lbl {
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}

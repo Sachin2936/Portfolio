@@ -1,0 +1,166 @@
+/* ==========================================================================
+   PROJECTS SECTION MODULAR STYLESHEET
+   Supports: 3D perspective tilt pop, Golden laser shimmer scan overlay
+   ========================================================================== */
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  perspective: 1000px; /* Enable depth layout */
+}
+
+.project-card {
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  cursor: pointer;
+  transform-style: preserve-3d; /* Support nested 3D pops */
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border-steel);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  transition: 
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    transform 0.15s cubic-bezier(0.25, 1, 0.5, 1); /* Faster for interactive mouse tilt */
+}
+
+/* BRAND NEW UNIQUE GOLD SHIMMER SCAN OVERLAY */
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(197, 168, 128, 0.25) 50%,
+    rgba(255, 255, 255, 0) 70%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.project-card:hover::before {
+  animation: gold-shimmer-sweep 1.6s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+.project-card:hover {
+  border-color: var(--gold-primary);
+  box-shadow: 
+    0 16px 36px rgba(0, 0, 0, 0.45),
+    0 0 24px var(--gold-primary-glow);
+}
+
+/* Popping components inside the 3D card */
+.project-header,
+.project-name,
+.project-desc,
+.project-tags,
+.project-link {
+  transform: translateZ(0px); /* Base state */
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.project-card:hover .project-header { transform: translateZ(30px); }
+.project-card:hover .project-name { transform: translateZ(40px); }
+.project-card:hover .project-desc { transform: translateZ(25px); }
+.project-card:hover .project-tags { transform: translateZ(35px); }
+.project-card:hover .project-link { transform: translateZ(20px); }
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-number {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold-primary);
+}
+
+.project-badge {
+  font-size: 9px;
+  padding: 4px 10px;
+  border: 1px solid var(--gold-primary);
+  color: var(--gold-primary);
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: var(--transition-smooth);
+}
+
+.project-card:hover .project-badge {
+  background: var(--gold-primary);
+  color: var(--bg-obsidian);
+  box-shadow: 0 0 10px var(--gold-primary-glow);
+}
+
+.project-name {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-white);
+  letter-spacing: 0.05em;
+}
+
+.project-desc {
+  font-size: 13px;
+  color: var(--text-grey);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.project-tags span {
+  font-size: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-steel);
+  color: var(--text-grey);
+  padding: 4px 10px;
+  border-radius: 4px;
+  transition: var(--transition-smooth);
+}
+
+.project-card:hover .project-tags span {
+  border-color: var(--border-gold-hover);
+  color: var(--gold-primary);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.project-link {
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gold-primary);
+  margin-top: auto;
+  transition: var(--transition-smooth);
+}
+
+.project-card:hover .project-link {
+  color: var(--text-white);
+  transform: translateZ(20px) translateX(4px);
+}
+
+@media (max-width: 480px) {
+  .project-card {
+    padding: 24px;
+  }
+}
