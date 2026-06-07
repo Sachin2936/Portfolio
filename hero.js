@@ -6,14 +6,11 @@
 (function () {
   'use strict';
 
-  /* ══════════ 1. CUSTOM CURSOR ══════════ */
-  const dot  = document.getElementById('cur-dot');
-  const ring = document.getElementById('cur-ring');
-  let mx = -200, my = -200, rx = -200, ry = -200;
+  /* ══════════ 1. NATIVE CURSOR RESTORED ══════════ */
+  let mx = -200, my = -200;
 
   document.addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
-    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
   });
 
   /* ══════════ 1b. SYNTHETIC SOUND ENGINE & BACKDROP INTERACTIVE PARALLAX ══════════ */
@@ -402,13 +399,15 @@
       if (entry.isIntersecting) {
         const secId = entry.target.id;
         
-        // Map section ID to hero name
+        // Map all section IDs to the Batman theme sound for perfect consistency
         const heroMap = {
           home: 'batman',
-          projects: 'spiderman',
-          journey: 'ironman',
-          activities: 'flash',
-          profiles: 'venom'
+          projects: 'batman',
+          journey: 'batman',
+          arsenal: 'batman',
+          activities: 'batman',
+          connect: 'batman',
+          profiles: 'batman'
         };
         
         const hero = heroMap[secId];
@@ -421,6 +420,8 @@
               heroSounds[hero]();
             }, 300); // short delay for visual sweep sync
           }
+
+
         }
       } else {
         activeSections.delete(entry.target.id);
@@ -430,33 +431,6 @@
   
   document.querySelectorAll('section[id]').forEach(s => soundObserver.observe(s));
 
-
-  // Theme-aware cursor color per section
-  const sectionColors = {
-    home:       { dot: '#FFD700', ring: 'rgba(255,215,0,0.5)' },
-    projects:   { dot: '#dc143c', ring: 'rgba(220,20,60,0.5)' },
-    journey:    { dot: '#00d4ff', ring: 'rgba(0,212,255,0.5)' },
-    activities: { dot: '#FFD700', ring: 'rgba(255,215,0,0.5)' },
-    profiles:   { dot: '#8b00ff', ring: 'rgba(139,0,255,0.5)' },
-  };
-
-  (function lazyRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-    requestAnimationFrame(lazyRing);
-  })();
-
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      ring.style.transform = 'translate(-50%,-50%) scale(1.8)';
-      ring.style.borderWidth = '1px';
-    });
-    el.addEventListener('mouseleave', () => {
-      ring.style.transform = 'translate(-50%,-50%) scale(1)';
-      ring.style.borderWidth = '1.5px';
-    });
-  });
 
   /* ══════════ 2. SCROLL PROGRESS + NAV ══════════ */
   const prog   = document.getElementById('scroll-prog');
@@ -477,11 +451,6 @@
       const active = a.getAttribute('href') === '#' + current;
       a.classList.toggle('active', active);
     });
-
-    // Change cursor colour per section
-    const col = sectionColors[current] || sectionColors.home;
-    dot.style.background = col.dot;
-    ring.style.borderColor = col.ring;
   }, { passive: true });
 
   /* ══════════ 3. CLICK RIPPLE / SPARKS ══════════ */
@@ -498,7 +467,7 @@
   document.addEventListener('click', e => {
     const colorMap = {
       home: '#FFD700', projects: '#dc143c',
-      journey: '#00d4ff', activities: '#FFD700', profiles: '#8b00ff'
+      journey: '#00d4ff', arsenal: '#FFD700', activities: '#FFD700', profiles: '#8b00ff'
     };
     const color = colorMap[currentSection] || '#FFD700';
 
@@ -704,7 +673,7 @@
     animateWeb();
   }
 
-  /* ══════════ 6. MYSTIC FIREFLY CANVAS ══════════ */
+  /* ══════════ 6. MYSTIC PORTAL & COSMIC RUNES CANVAS ══════════ */
   const mysticCanvas = document.getElementById('mystic-canvas');
   if (mysticCanvas) {
     const mc = mysticCanvas.getContext('2d');
@@ -717,51 +686,172 @@
     resizeMystic();
     window.addEventListener('resize', resizeMystic, { passive: true });
 
-    // Soft drifting firefly particles
-    const fireflies = Array.from({ length: 90 }, () => ({
-      x:  Math.random() * 1920,
-      y:  Math.random() * 1080,
-      size: 0.6 + Math.random() * 1.8,
-      vx: (Math.random() - 0.5) * 0.25,
-      vy: -0.08 - Math.random() * 0.35,  // drift gently upward
-      opacity:   Math.random(),
-      oDir:      Math.random() > 0.5 ? 1 : -1,
-      oSpeed:    0.003 + Math.random() * 0.007,
-      hue:       248 + Math.random() * 55,  // purple-violet range
-    }));
+    // Track mouse coordinates to power dynamic resonance
+    let mX = -1000, mY = -1000;
+    let resonance = 0.15; // default rest state
+    
+    document.addEventListener('mousemove', e => {
+      const r = mysticCanvas.getBoundingClientRect();
+      // Only track if mouse is close to the section
+      if (e.clientY >= r.top - 300 && e.clientY <= r.bottom + 300) {
+        mX = e.clientX - r.left;
+        mY = e.clientY - r.top;
+      } else {
+        mX = -1000; mY = -1000;
+      }
+    }, { passive: true });
+
+    // Golden runic embers/sparks flying radially outward
+    const sparks = [];
+    const maxSparks = 100;
+
+    function spawnSpark(cx, cy, intensity) {
+      if (sparks.length >= maxSparks) return;
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 1.0 + Math.random() * 2.5 * (1 + intensity * 2.0);
+      sparks.push({
+        x: cx + Math.cos(angle) * 120,
+        y: cy + Math.sin(angle) * 120,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed + (Math.random() - 0.5) * 0.4 - 0.25, // slight upward drift
+        size: 0.8 + Math.random() * 2.2,
+        life: 1.0,
+        decay: 0.006 + Math.random() * 0.012,
+        hue: 38 + Math.random() * 15 // warm gold-amber HSL range
+      });
+    }
+
+    let rot1 = 0, rot2 = 0, rot3 = 0;
 
     function drawMystic() {
       mc.clearRect(0, 0, mW, mH);
 
-      fireflies.forEach(f => {
-        // update
-        f.x += f.vx;
-        f.y += f.vy;
-        f.opacity += f.oDir * f.oSpeed;
-        if (f.opacity >= 1 || f.opacity <= 0) f.oDir *= -1;
+      const cx = mW / 2;
+      const cy = mH / 2;
 
-        // wrap
-        if (f.y < -8)     { f.y = mH + 8;  f.x = Math.random() * mW; }
-        if (f.x < -8)     { f.x = mW + 8; }
-        if (f.x > mW + 8) { f.x = -8; }
+      // 1. Calculate dynamic interactive resonance
+      let targetRes = 0.15;
+      if (mX !== -1000) {
+        const dist = Math.hypot(mX - cx, mY - cy);
+        targetRes = Math.max(0.15, 1.0 - dist / 700);
+      }
+      resonance += (targetRes - resonance) * 0.08; // smooth interpolation
 
-        const a = f.opacity * 0.55;
+      // 2. Rotate portal rings based on resonance
+      rot1 += 0.003 * (1 + resonance * 4.0);
+      rot2 -= 0.005 * (1 + resonance * 3.5);
+      rot3 += 0.001 * (1 + resonance * 5.0);
 
-        // core dot
+      // 3. Draw ambient core portal glow
+      const portalGlow = mc.createRadialGradient(cx, cy, 50, cx, cy, 320 * (0.8 + resonance * 0.4));
+      portalGlow.addColorStop(0, `hsla(42, 100%, 65%, ${0.12 * resonance})`);
+      portalGlow.addColorStop(0.3, `hsla(38, 100%, 55%, ${0.05 * resonance})`);
+      portalGlow.addColorStop(1, 'rgba(4, 4, 7, 0)');
+      mc.beginPath();
+      mc.arc(cx, cy, 320 * (0.8 + resonance * 0.4), 0, Math.PI * 2);
+      mc.fillStyle = portalGlow;
+      mc.fill();
+
+      // 4. Draw Rotating Runes & Telemetry Circles
+      mc.lineWidth = 1.2;
+      
+      // Ring 1 (Inner dashed tracking ring)
+      mc.save();
+      mc.translate(cx, cy);
+      mc.rotate(rot1);
+      mc.beginPath();
+      mc.arc(0, 0, 180, 0, Math.PI * 2);
+      mc.setLineDash([20, 15, 4, 15]);
+      mc.strokeStyle = `hsla(42, 100%, 65%, ${0.08 + resonance * 0.18})`;
+      mc.stroke();
+      
+      // Draw inner decorative anchors
+      for (let i = 0; i < 4; i++) {
+        mc.rotate(Math.PI / 2);
         mc.beginPath();
-        mc.arc(f.x, f.y, f.size, 0, Math.PI * 2);
-        mc.fillStyle = `hsla(${f.hue},75%,82%,${a})`;
+        mc.moveTo(0, -170);
+        mc.lineTo(-10, -180);
+        mc.lineTo(10, -180);
+        mc.closePath();
+        mc.fillStyle = `hsla(42, 100%, 65%, ${0.1 + resonance * 0.22})`;
+        mc.fill();
+      }
+      mc.restore();
+
+      // Ring 2 (Middle thick runic dash ring)
+      mc.save();
+      mc.translate(cx, cy);
+      mc.rotate(rot2);
+      mc.beginPath();
+      mc.arc(0, 0, 240, 0, Math.PI * 2);
+      mc.setLineDash([45, 12, 10, 12, 45, 20]);
+      mc.lineWidth = 2;
+      mc.strokeStyle = `hsla(38, 100%, 55%, ${0.06 + resonance * 0.22})`;
+      mc.stroke();
+      mc.restore();
+
+      // Ring 3 (Outer planetary orbital ring with glyph points)
+      mc.save();
+      mc.translate(cx, cy);
+      mc.rotate(rot3);
+      mc.beginPath();
+      mc.arc(0, 0, 310, 0, Math.PI * 2);
+      mc.setLineDash([100, 25, 10, 25]);
+      mc.lineWidth = 1.0;
+      mc.strokeStyle = `hsla(38, 100%, 60%, ${0.04 + resonance * 0.15})`;
+      mc.stroke();
+
+      // Outer glowing runes/ticks
+      const tickCount = 12;
+      for (let i = 0; i < tickCount; i++) {
+        const angle = (Math.PI * 2 / tickCount) * i;
+        const tx = Math.cos(angle) * 310;
+        const ty = Math.sin(angle) * 310;
+        
+        mc.beginPath();
+        mc.arc(tx, ty, 3 + resonance * 2, 0, Math.PI * 2);
+        mc.fillStyle = `hsla(42, 100%, 65%, ${0.12 + resonance * 0.35})`;
+        mc.fill();
+        
+        // draw a small radial beam from each glyph pointing inward
+        mc.beginPath();
+        mc.moveTo(tx, ty);
+        mc.lineTo(tx * 0.95, ty * 0.95);
+        mc.strokeStyle = `hsla(42, 100%, 65%, ${0.08 + resonance * 0.2})`;
+        mc.stroke();
+      }
+      mc.restore();
+
+      // 5. Spawn and render runic sparks/embers
+      if (Math.random() < 0.3 + resonance * 0.6) {
+        spawnSpark(cx, cy, resonance);
+      }
+
+      for (let i = sparks.length - 1; i >= 0; i--) {
+        const s = sparks[i];
+        s.x += s.vx;
+        s.y += s.vy;
+        s.life -= s.decay;
+
+        if (s.life <= 0) {
+          sparks.splice(i, 1);
+          continue;
+        }
+
+        const alpha = s.life * (0.3 + resonance * 0.6);
+        
+        // Render spark
+        mc.beginPath();
+        mc.arc(s.x, s.y, s.size * (0.5 + s.life * 0.5), 0, Math.PI * 2);
+        mc.fillStyle = `hsla(${s.hue}, 95%, 72%, ${alpha})`;
         mc.fill();
 
-        // halo glow
-        const grd = mc.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.size * 7);
-        grd.addColorStop(0,   `hsla(${f.hue},70%,75%,${a * 0.38})`);
-        grd.addColorStop(1,   `hsla(${f.hue},70%,75%,0)`);
+        // Spark halo glow
         mc.beginPath();
-        mc.arc(f.x, f.y, f.size * 7, 0, Math.PI * 2);
-        mc.fillStyle = grd;
+        mc.arc(s.x, s.y, s.size * 3 * s.life, 0, Math.PI * 2);
+        mc.fillStyle = `hsla(${s.hue}, 95%, 72%, ${alpha * 0.22})`;
         mc.fill();
-      });
+      }
 
       requestAnimationFrame(drawMystic);
     }
@@ -781,43 +871,129 @@
     resizeLight();
     window.addEventListener('resize', resizeLight, { passive: true });
 
+    // Track mouse position over the activities section
+    let mX = -1000, mY = -1000;
+    let hoveredCard = null;
+
+    document.addEventListener('mousemove', e => {
+      const r = lightCanvas.getBoundingClientRect();
+      if (e.clientY >= r.top && e.clientY <= r.bottom && e.clientX >= r.left && e.clientX <= r.right) {
+        mX = e.clientX - r.left;
+        mY = e.clientY - r.top;
+      } else {
+        mX = -1000; mY = -1000;
+      }
+    }, { passive: true });
+
+    // Attach card hover trackers to select target anchors
+    document.querySelectorAll('.flash-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        hoveredCard = card;
+      });
+      card.addEventListener('mouseleave', () => {
+        hoveredCard = null;
+      });
+    });
+
     function drawLightning(x1, y1, x2, y2, depth, alpha) {
       if (depth === 0) return;
-      const mx = (x1 + x2) / 2 + (Math.random() - 0.5) * 60 / depth;
-      const my = (y1 + y2) / 2 + (Math.random() - 0.5) * 40 / depth;
+      const mx = (x1 + x2) / 2 + (Math.random() - 0.5) * 80 / depth;
+      const my = (y1 + y2) / 2 + (Math.random() - 0.5) * 60 / depth;
+      
       lc.beginPath();
       lc.moveTo(x1, y1); lc.lineTo(mx, my); lc.lineTo(x2, y2);
-      lc.strokeStyle = `rgba(255,215,0,${alpha})`;
-      lc.lineWidth = depth * 0.8;
+      lc.strokeStyle = `rgba(255, 220, 50, ${alpha})`;
+      lc.lineWidth = depth * 0.9;
+      lc.shadowColor = 'rgba(255, 215, 0, 0.8)';
+      lc.shadowBlur = depth * 3.5;
       lc.stroke();
-      if (Math.random() > 0.5 && depth > 1) {
-        drawLightning(mx, my, mx + (Math.random()-0.5)*100, my + (Math.random()+0.5)*80, depth-1, alpha*0.6);
+      lc.shadowBlur = 0; // reset for performance
+
+      if (Math.random() > 0.6 && depth > 1) {
+        // fork branch
+        drawLightning(mx, my, mx + (Math.random() - 0.5) * 120, my + (Math.random() + 0.2) * 90, depth - 1, alpha * 0.5);
       }
-      drawLightning(x1, y1, mx, my, depth-1, alpha * 0.7);
-      drawLightning(mx, my, x2, y2, depth-1, alpha * 0.7);
+      drawLightning(x1, y1, mx, my, depth - 1, alpha * 0.72);
+      drawLightning(mx, my, x2, y2, depth - 1, alpha * 0.72);
     }
 
     let flashTimer = 0;
+
     function animateFlash() {
       lc.clearRect(0, 0, lW, lH);
 
       // Speed lines background
       for (let i = 0; i < 30; i++) {
         const y = (i / 30) * lH;
-        const len = 50 + Math.random() * 150;
+        const len = 60 + Math.random() * 180;
         const x = Math.random() * lW;
         lc.beginPath();
         lc.moveTo(x, y); lc.lineTo(x - len, y);
-        lc.strokeStyle = `rgba(255,215,0,${0.02 + Math.random() * 0.04})`;
+        lc.strokeStyle = `rgba(255, 215, 0, ${0.02 + Math.random() * 0.04})`;
         lc.lineWidth = 1;
         lc.stroke();
       }
 
-      // Periodic lightning strike
+      // 1. Dynamic Cursor Snapping Lightning
+      if (mX !== -1000) {
+        if (Math.random() < 0.35) {
+          // snap from random screen edge to cursor
+          const edge = Math.floor(Math.random() * 4);
+          let startX = 0, startY = 0;
+          if (edge === 0) { startX = Math.random() * lW; startY = 0; } // Top
+          else if (edge === 1) { startX = lW; startY = Math.random() * lH; } // Right
+          else if (edge === 2) { startX = Math.random() * lW; startY = lH; } // Bottom
+          else { startX = 0; startY = Math.random() * lH; } // Left
+
+          drawLightning(startX, startY, mX, mY, 4, 0.75);
+          
+          // Draw small snap contact flash
+          lc.beginPath();
+          lc.arc(mX, mY, 4 + Math.random() * 5, 0, Math.PI * 2);
+          lc.fillStyle = '#ffffff';
+          lc.fill();
+        }
+      }
+
+      // 2. High-Voltage Hovered Card Discharges
+      if (hoveredCard) {
+        const r = hoveredCard.getBoundingClientRect();
+        const cr = lightCanvas.getBoundingClientRect();
+        
+        // Find card bounds relative to canvas
+        const cardX1 = r.left - cr.left;
+        const cardY1 = r.top - cr.top;
+        const cardWidth = r.width;
+        const cardHeight = r.height;
+
+        const targetX = cardX1 + cardWidth / 2;
+        const targetY = cardY1 + cardHeight / 2;
+
+        if (Math.random() < 0.45) {
+          // Shoot a discharge bolt from one of the canvas corners towards the hovered card center!
+          const corners = [
+            {x: 0, y: 0},
+            {x: lW, y: 0},
+            {x: 0, y: lH},
+            {x: lW, y: lH}
+          ];
+          const c = corners[Math.floor(Math.random() * 4)];
+          
+          // Crackle directly into the card center
+          drawLightning(c.x, c.y, targetX, targetY, 4, 0.85);
+
+          // Draw neon bounding box pulses around the active hovered card
+          lc.strokeStyle = 'rgba(255, 215, 0, 0.4)';
+          lc.lineWidth = 2.0;
+          lc.strokeRect(cardX1 - 2, cardY1 - 2, cardWidth + 4, cardHeight + 4);
+        }
+      }
+
+      // 3. Periodic ambient lightning strike
       flashTimer++;
-      if (flashTimer % 120 < 5) {
+      if (flashTimer % 140 < 6) {
         const x1 = Math.random() * lW;
-        drawLightning(x1, 0, x1 + (Math.random()-0.5)*200, lH, 4, 0.6);
+        drawLightning(x1, 0, x1 + (Math.random() - 0.5) * 200, lH, 4, 0.55);
       }
 
       requestAnimationFrame(animateFlash);
@@ -920,7 +1096,7 @@
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
-  document.querySelectorAll('.spidey-card, .mission-item, .flash-card, .venom-card, .micro-card').forEach((el, i) => {
+  document.querySelectorAll('.spidey-card, .mission-item, .flash-card, .venom-card, .micro-card, .arsenal-card').forEach((el, i) => {
     const delay = el.dataset.delay || 0;
     el.style.transitionDelay = delay + 'ms';
     observer.observe(el);
@@ -1093,105 +1269,298 @@ document.querySelectorAll('[data-magnetic]').forEach(el => {
     }, { passive: true });
   }
 
-  /* ══════════ 16. CINEMATIC FRAME — SUBJECT REVEAL ══════════ */
-  (function initCinematicFrame() {
-    const frame    = document.getElementById('cinema-frame');
-    const labelEl  = document.getElementById('cf-label');
-    const textEl   = document.getElementById('cf-text');
-    const dots     = Array.from(document.querySelectorAll('.cf-dot'));
-    const counterEl= document.getElementById('cf-counter');
-    if (!frame || !textEl) return;
+  /* ══════════ 16. JOURNEY TIMELINE — SCROLL CHAPTER REVEAL ══════════ */
+  (function initJourneyTimeline() {
+    const track = document.getElementById('journey-track');
+    const wrap  = document.getElementById('journey-track-wrap');
+    const dots  = document.querySelectorAll('#journey-dots .jy-dot');
+    if (!track || !wrap) return;
 
-    // Full B.Tech sequence ────────────────────────────────────────────────────
-    //  isYear: true  →  big year card (shorter hold)
-    //  isYear: false →  subject text
-    const seq = [
-      { isYear: true,  year: 0, label: '',                          text: '2021'                          },
-      { isYear: false, year: 0, label: '2021  ·  Year One',         text: 'Programming in C'              },
-      { isYear: false, year: 0, label: '2021  ·  Year One',         text: 'Calculus & Algebra'            },
-      { isYear: false, year: 0, label: '2021  ·  Year One',         text: 'Engineering Physics'           },
-      { isYear: false, year: 0, label: '2021  ·  Year One',         text: 'Engineering Graphics'          },
-      { isYear: false, year: 0, label: '2021  ·  Year One',         text: 'Mechanics'                     },
+    const chapters = track.querySelectorAll('.jy-chapter');
+    let activeChapter = 0;
+    let hasRevealed = new Set();
 
-      { isYear: true,  year: 1, label: '',                          text: '2022'                          },
-      { isYear: false, year: 1, label: '2022  ·  Year Two',         text: 'Data Structures & Algorithms'  },
-      { isYear: false, year: 1, label: '2022  ·  Year Two',         text: 'OOP — Java & C++'              },
-      { isYear: false, year: 1, label: '2022  ·  Year Two',         text: 'Discrete Mathematics'          },
-      { isYear: false, year: 1, label: '2022  ·  Year Two',         text: 'Database Management'           },
-      { isYear: false, year: 1, label: '2022  ·  Year Two',         text: 'Computer Organization'         },
+    // ── Reveal chapter cards + fill bars ──
+    function revealChapter(chapter, idx) {
+      if (hasRevealed.has(idx)) return;
+      hasRevealed.add(idx);
 
-      { isYear: true,  year: 2, label: '',                          text: '2023'                          },
-      { isYear: false, year: 2, label: '2023  ·  Year Three',       text: 'Design & Analysis of Algorithms'},
-      { isYear: false, year: 2, label: '2023  ·  Year Three',       text: 'Computer Networks'             },
-      { isYear: false, year: 2, label: '2023  ·  Year Three',       text: 'Software Engineering'          },
-      { isYear: false, year: 2, label: '2023  ·  Year Three',       text: 'Theory of Computation'         },
-      { isYear: false, year: 2, label: '2023  ·  Year Three',       text: 'Artificial Intelligence'       },
-      { isYear: false, year: 2, label: '2023  ·  Year Three',       text: 'Web Technologies'              },
+      chapter.classList.add('jy-revealed');
 
-      { isYear: true,  year: 3, label: '',                          text: '2024'                          },
-      { isYear: false, year: 3, label: '2024  ·  Year Four',        text: 'Distributed Systems'           },
-      { isYear: false, year: 3, label: '2024  ·  Year Four',        text: 'Cryptography & Security'       },
-      { isYear: false, year: 3, label: '2024  ·  Year Four',        text: 'Cloud Computing'               },
-      { isYear: false, year: 3, label: '2024  ·  Year Four',        text: 'Machine Learning'              },
-      { isYear: false, year: 3, label: '2024  ·  Year Four',        text: 'Big Data Analytics'            },
-      { isYear: false, year: 3, label: '2024  ·  Year Four',        text: 'Capstone Project'              },
-    ];
-
-    const TOTAL_SUBJECTS = seq.filter(s => !s.isYear).length;
-    let idx = 0, subIdx = 0, started = false;
-    const FADE = 320;   // ms for fade in/out
-    const HOLD_YEAR = 1500;
-    const HOLD_SUB  = 1200;
-
-    function show(item) {
-      // --- fade out ---
-      textEl.classList.remove('visible');
-      labelEl.classList.add('fading');
-
-      setTimeout(() => {
-        // swap content
-        if (item.isYear) {
-          textEl.className = 'cf-text is-year';
-          labelEl.textContent = '';
-        } else {
-          subIdx++;
-          textEl.className = 'cf-text';
-          labelEl.textContent = item.label;
-          if (counterEl) counterEl.textContent =
-            String(subIdx).padStart(2,'0') + ' / ' + String(TOTAL_SUBJECTS).padStart(2,'0');
-        }
-        textEl.textContent = item.text;
-
-        // update dots
-        dots.forEach((d, i) => d.classList.toggle('active', i === item.year));
-
-        // --- fade in ---
-        labelEl.classList.remove('fading');
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => textEl.classList.add('visible'));
-        });
-      }, FADE);
+      // Fill mastery bars after a short delay
+      chapter.querySelectorAll('.jy-bar-fill').forEach(bar => {
+        const w = parseInt(bar.dataset.w) || 0;
+        bar.style.width = w + '%';
+      });
     }
 
-    function next() {
-      if (idx >= seq.length) { idx = 0; subIdx = 0; }
-      const item = seq[idx++];
-      show(item);
-      const hold = item.isYear ? HOLD_YEAR : HOLD_SUB;
-      setTimeout(next, hold + FADE);
+    // ── Update active dot ──
+    function setActiveDot(i) {
+      dots.forEach((d, di) => d.classList.toggle('active', di === i));
+      activeChapter = i;
     }
 
-    // Trigger once cinema frame enters viewport ──────────────────────────────
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && !started) {
-        started = true;
-        setTimeout(next, 500);
-        obs.disconnect();
+    // ── Scroll listener: detect which chapter is in view ──
+    function onScroll() {
+      const tw = track.clientWidth;
+      const sx = track.scrollLeft;
+      const ci = Math.round(sx / tw);
+      if (ci !== activeChapter) setActiveDot(ci);
+    }
+    track.addEventListener('scroll', onScroll, { passive: true });
+
+    // ── Dot click → snap to chapter ──
+    dots.forEach((dot, di) => {
+      dot.addEventListener('click', () => {
+        track.scrollTo({ left: di * track.clientWidth, behavior: 'smooth' });
+        setActiveDot(di);
+      });
+    });
+
+    // ── Intersection Observer for each chapter ──
+    const chapterObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const idx = [...chapters].indexOf(entry.target);
+        revealChapter(entry.target, idx);
+      });
+    }, { threshold: 0.3, root: track });
+
+    chapters.forEach(ch => chapterObs.observe(ch));
+
+    // ── Section scroll into viewport → reveal chapter 0 ──
+    const sectionObs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        revealChapter(chapters[0], 0);
+        sectionObs.disconnect();
       }
-    }, { threshold: 0.35 });
+    }, { threshold: 0.2 });
+    const journeySection = document.getElementById('journey');
+    if (journeySection) sectionObs.observe(journeySection);
 
-    obs.observe(frame);
+    // ── Keyboard arrow navigation ──
+    document.addEventListener('keydown', e => {
+      const section = document.getElementById('journey');
+      if (!section) return;
+      const rect = section.getBoundingClientRect();
+      if (rect.top > window.innerHeight || rect.bottom < 0) return;
+
+      if (e.key === 'ArrowRight') {
+        const next = Math.min(activeChapter + 1, chapters.length - 1);
+        track.scrollTo({ left: next * track.clientWidth, behavior: 'smooth' });
+        setActiveDot(next);
+      } else if (e.key === 'ArrowLeft') {
+        const prev = Math.max(activeChapter - 1, 0);
+        track.scrollTo({ left: prev * track.clientWidth, behavior: 'smooth' });
+        setActiveDot(prev);
+      }
+    });
+
+    // ── Card tilt on hover ──
+    chapters.forEach(chapter => {
+      chapter.querySelectorAll('.jy-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const dx = (e.clientX - r.left) / r.width - 0.5;
+          const dy = (e.clientY - r.top)  / r.height - 0.5;
+          card.style.transform = `translateY(-4px) perspective(600px) rotateX(${-dy*5}deg) rotateY(${dx*5}deg)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+        });
+      });
+    });
   })();
+
 
 })();
 
+
+/* ══════════ 17. HERO PHOTO 3D TILT ══════════ */
+(function initPhotoTilt() {
+  const photoFrame = document.getElementById('photo-tilt');
+  if (!photoFrame) return;
+  // Support both old .photo-orbit and new .photo-portal wrapper class
+  const photoOrbit = photoFrame.closest('.photo-orbit') || photoFrame.closest('.photo-portal');
+
+  photoFrame.addEventListener('mousemove', e => {
+    const r = photoFrame.getBoundingClientRect();
+    const dx = (e.clientX - (r.left + r.width / 2))  / (r.width / 2);
+    const dy = (e.clientY - (r.top  + r.height / 2)) / (r.height / 2);
+    photoFrame.style.transform = `perspective(600px) rotateY(${dx * 10}deg) rotateX(${-dy * 10}deg) scale(1.04)`;
+    photoFrame.style.transition = 'transform 0.1s ease';
+  });
+  photoFrame.addEventListener('mouseleave', () => {
+    photoFrame.style.transform = 'perspective(600px) rotateY(0deg) rotateX(0deg) scale(1)';
+    photoFrame.style.transition = 'transform 0.6s cubic-bezier(0.16,1,0.3,1)';
+  });
+
+  const heroSection = document.getElementById('home');
+  if (heroSection) {
+    heroSection.addEventListener('mousemove', e => {
+      const r = heroSection.getBoundingClientRect();
+      const px = ((e.clientX - r.left) / r.width  - 0.5) * 20;
+      const py = ((e.clientY - r.top)  / r.height - 0.5) * 15;
+      if (photoOrbit) {
+        photoOrbit.style.transform = `translate(${px}px, ${py}px)`;
+        photoOrbit.style.transition = 'transform 0.4s ease';
+      }
+    }, { passive: true });
+    heroSection.addEventListener('mouseleave', () => {
+      if (photoOrbit) {
+        photoOrbit.style.transform = '';
+        photoOrbit.style.transition = 'transform 0.8s cubic-bezier(0.16,1,0.3,1)';
+      }
+    });
+  }
+})();
+
+/* ==========================================================
+   BATCOMPUTER COMMAND TERMINAL & DYNAMIC REFRESH PROTOCOLS
+   ========================================================== */
+(function initCavernExtras() {
+  'use strict';
+
+  /* ── 1. BATCOMPUTER TERMINAL DRAWER ── */
+  const toggleBtn = document.getElementById('term-toggle');
+  const terminal  = document.getElementById('bat-terminal');
+  const closeBtn  = document.getElementById('term-close-btn');
+  const termInput = document.getElementById('term-input');
+  const termOutput = document.getElementById('term-output');
+
+  if (toggleBtn && terminal && termInput && termOutput) {
+    toggleBtn.addEventListener('click', () => {
+      terminal.classList.toggle('active');
+      if (terminal.classList.contains('active')) {
+        setTimeout(() => termInput.focus(), 150);
+      }
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        terminal.classList.remove('active');
+      });
+    }
+
+    termInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        const cmd = termInput.value.trim().toLowerCase();
+        termInput.value = '';
+        if (cmd) {
+          handleCommand(cmd);
+        }
+      }
+    });
+
+    function printLine(text, type = '') {
+      const line = document.createElement('div');
+      line.className = 'term-line ' + type;
+      line.innerHTML = text;
+      termOutput.appendChild(line);
+      
+      const body = document.getElementById('term-body');
+      if (body) {
+        body.scrollTop = body.scrollHeight;
+      }
+    }
+
+    function handleCommand(cmd) {
+      printLine(`BAT-SYS:~$ ${cmd}`, 'prompt-echo');
+
+      switch (cmd) {
+        case 'help':
+          printLine('Available cavern commands:<br>' +
+            '- <strong style="color:#ffb900;">about</strong>: Background profile dossier<br>' +
+            '- <strong style="color:#ffb900;">skills</strong>: Core programming gear & tech stats<br>' +
+            '- <strong style="color:#ffb900;">projects</strong>: Decrypted tactical repositories<br>' +
+            '- <strong style="color:#ffb900;">contact</strong>: Establish secure connection lines<br>' +
+            '- <strong style="color:#ffb900;">clear</strong>: Wipe terminal logs');
+          break;
+        case 'about':
+          printLine('SUBJECT: Sachin Singh<br>' +
+            'ROLE: Software Engineer & Full Stack Web Developer<br>' +
+            'BIO: Precision developer deploying high-performance apps under the shadows of night. Built secure auths, real-time engines, and retro canvas runners.');
+          break;
+        case 'skills':
+          printLine('THE SKILLS PROTOCOLS:<br>' +
+            '- Languages: JS/TS (95%), Python (85%), C++ (80%), Java<br>' +
+            '- Frontend: React, Next.js, HTML5/CSS3, Tailwind, Canvas<br>' +
+            '- Backend: Node/Express, RESTful APIs, Postgres, Mongo, Redis<br>' +
+            '- DevOps: Docker, Git, CI/CD, AWS, Linux');
+          break;
+        case 'projects':
+          printLine('TACTICAL DEPLOYMENTS:<br>' +
+            '- FILE_01: TypeNews — Live Typing News Portal (Next.js/Tailwind)<br>' +
+            '- FILE_02: Algorithm visualizer engine (Canvas API)<br>' +
+            '- FILE_03: Cryptographic JWT authentication (Node/Docker)');
+          break;
+        case 'contact':
+          printLine('SECURE CHANNELS OPEN:<br>' +
+            '- Email: <a href="mailto:sachin31033@gmail.com" style="color:#ffb900;">sachin31033@gmail.com</a><br>' +
+            '- LinkedIn: <a href="https://www.linkedin.com/in/sachin-singh-29360423ss/" target="_blank" style="color:#ffb900;">linkedin.com/in/sachin-singh-29360423ss/</a><br>' +
+            '- GitHub: <a href="https://github.com/Sachin2936" target="_blank" style="color:#ffb900;">github.com/Sachin2936</a>');
+          break;
+        case 'clear':
+          termOutput.innerHTML = '';
+          break;
+        default:
+          printLine(`Command not recognized: "${cmd}". Type <strong style="color:#ffb900;">help</strong> for support.`, 'system');
+      }
+    }
+  }
+
+  /* ── 2. LEETCODE DATABASE SYNC SIMULATION ── */
+  const syncBtn = document.getElementById('lc-sync-btn');
+  const numEl   = document.getElementById('lc-venom-num');
+  const arcEl   = document.getElementById('lc-venom-arc');
+
+  if (syncBtn && numEl && arcEl) {
+    syncBtn.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const icon = syncBtn.querySelector('svg');
+      if (icon) {
+        icon.style.transform = 'rotate(360deg)';
+        setTimeout(() => icon.style.transform = 'rotate(0deg)', 600);
+      }
+
+      numEl.textContent = '---';
+      arcEl.style.strokeDashoffset = '314';
+
+      setTimeout(() => {
+        const total = 350, max = 700, circum = 314;
+        const offset = circum - (total / max * circum);
+        arcEl.style.strokeDashoffset = offset;
+
+        const dur = 1500, start = performance.now();
+        (function tick(now) {
+          const p = Math.min((now - start) / dur, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          numEl.textContent = Math.round(eased * total);
+          if (p < 1) requestAnimationFrame(tick);
+          else numEl.textContent = total;
+        })(performance.now());
+      }, 400);
+    });
+  }
+
+  /* ── 3. 3D PERSPECTIVE BENTO CARD HOVER EFFECTS ── */
+  document.querySelectorAll('.bento-card, .flash-card, .arsenal-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = e.clientX - r.left;
+      const y = e.clientY - r.top;
+      const px = (x / r.width - 0.5) * 14;
+      const py = (y / r.height - 0.5) * -14;
+      
+      card.style.transform = `perspective(800px) rotateX(${py}deg) rotateY(${px}deg) translateY(-4px)`;
+      card.style.boxShadow = `0 15px 35px rgba(0,0,0,0.65), 0 0 25px hsla(var(--neon-glow-h, 45), 100%, 50%, 0.18)`;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.boxShadow = '';
+    });
+  });
+})();

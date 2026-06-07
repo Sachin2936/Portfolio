@@ -1091,3 +1091,5 @@ button:hover ~ #cursor-ring { transform: translate(-50%,-50%) scale(1.5); }
 .sr.sr-right { transform: translateX(50px); }
 .sr.sr-scale { transform: scale(0.85); }
 .sr.visible { opacity: 1; transform: none; }
+
+

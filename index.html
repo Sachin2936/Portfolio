@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,33 +8,57 @@
   <meta name="description" content="Sachin Singh — Software Engineer. A superhero-themed developer portfolio.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;600;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="main.css?v=24">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;600;900&family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="activities-fx.css">
+  <link rel="stylesheet" href="hero-skills.css">
+  <link rel="stylesheet" href="hero-redesign.css">
+  <!-- JSON-LD Structured Data Schema for Job Applications SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Sachin Singh",
+    "jobTitle": "Software Engineer",
+    "url": "https://www.linkedin.com/in/sachin-singh-29360423ss/",
+    "sameAs": [
+      "https://www.linkedin.com/in/sachin-singh-29360423ss/",
+      "https://github.com/Sachin2936",
+      "https://leetcode.com/u/Sachin2930/"
+    ],
+    "knowsAbout": ["JavaScript", "TypeScript", "Python", "C++", "React.js", "Node.js", "PostgreSQL", "Docker", "DevOps"]
+  }
+  </script>
 </head>
+
 <body>
 
-  <!-- Custom Cursor -->
-  <div id="cur-dot"></div>
-  <div id="cur-ring"></div>
+
 
   <!-- Scroll Progress -->
   <div id="scroll-prog"></div>
+
 
   <!-- ═══════════ NAV ═══════════ -->
   <nav id="nav">
     <div class="nav-wrap">
       <a href="#home" class="nav-brand">
         <svg class="bat-mini" viewBox="0 0 100 45" width="36" height="16">
-          <path d="M50,4 C34,4 22,22 4,14 C14,26 30,26 40,40 C45,34 47,24 50,27 C53,24 55,34 60,40 C70,26 86,26 96,14 C78,22 66,4 50,4Z" fill="currentColor"/>
+          <path
+            d="M50,4 C34,4 22,22 4,14 C14,26 30,26 40,40 C45,34 47,24 50,27 C53,24 55,34 60,40 C70,26 86,26 96,14 C78,22 66,4 50,4Z"
+            fill="currentColor" />
         </svg>
         <span>SACHIN</span>
       </a>
       <div class="nav-links">
-        <a href="#home"       class="nl" data-hero="batman">Home</a>
-        <a href="#projects"   class="nl" data-hero="spiderman">Projects</a>
-        <a href="#journey"    class="nl" data-hero="ironman">Journey</a>
-        <a href="#activities" class="nl" data-hero="flash">Activities</a>
-        <a href="#profiles"   class="nl" data-hero="venom">Profiles</a>
+        <a href="#home" class="nl" data-hero="batman">Home</a>
+        <a href="#projects" class="nl" data-hero="batman">Projects</a>
+        <a href="#journey" class="nl" data-hero="batman">Journey</a>
+        <a href="#arsenal" class="nl" data-hero="batman">Skills</a>
+        <a href="#activities" class="nl" data-hero="batman">Activities</a>
+        <a href="#connect" class="nl" data-hero="batman">Connect</a>
       </div>
       <button id="sound-toggle" aria-label="Toggle Sound Effects" class="btn-sound-control">
         <span class="sound-wave">
@@ -47,281 +72,876 @@
     </div>
   </nav>
 
-  <!-- ═══════════ HERO — BATMAN ═══════════ -->
+  <!-- ═══════════ HERO — NEBULA QUANTUM TERMINAL v5 ═══════════ -->
   <section id="home" class="hero-section batman-section">
 
-    <!-- Gotham City Skyline -->
-    <div class="gotham-skyline" aria-hidden="true">
-      <svg viewBox="0 0 1440 320" preserveAspectRatio="none" class="skyline-svg">
-        <path d="M0,320 L0,200 L60,200 L60,160 L80,160 L80,120 L100,120 L100,100 L120,100 L120,80 L140,80 L140,100 L160,100 L160,140 L180,140 L180,200 L220,200 L220,160 L240,160 L240,80 L260,80 L260,60 L280,60 L280,40 L300,40 L300,20 L310,20 L310,40 L320,40 L320,60 L340,60 L340,80 L360,80 L360,100 L380,100 L380,80 L400,80 L400,60 L420,60 L420,40 L440,40 L440,100 L460,100 L460,140 L480,140 L480,200 L520,200 L520,160 L540,160 L540,100 L560,100 L560,80 L580,80 L580,60 L600,60 L600,30 L620,30 L620,10 L630,10 L630,30 L640,30 L640,60 L660,60 L660,80 L680,80 L680,100 L700,100 L700,120 L720,120 L720,80 L740,80 L740,60 L760,60 L760,40 L780,40 L780,20 L800,20 L800,40 L820,40 L820,60 L840,60 L840,80 L860,80 L860,100 L880,100 L880,120 L900,120 L900,140 L920,140 L920,100 L940,100 L940,80 L960,80 L960,60 L980,60 L980,80 L1000,80 L1000,100 L1020,100 L1020,120 L1040,120 L1040,140 L1060,140 L1060,160 L1080,160 L1080,200 L1120,200 L1120,140 L1140,140 L1140,100 L1160,100 L1160,60 L1180,60 L1180,40 L1200,40 L1200,60 L1220,60 L1220,80 L1240,80 L1240,100 L1260,100 L1260,120 L1280,120 L1280,160 L1300,160 L1300,200 L1440,200 L1440,320 Z" fill="rgba(0,0,0,0.9)"/>
-      </svg>
+    <!-- Gaseous Nebula Background Blooms -->
+    <div class="si-aurora-gold" aria-hidden="true"></div>
+    <div class="si-aurora-cyan" aria-hidden="true"></div>
+
+    <!-- 3D Synthwave Grid Floor -->
+    <div class="si-3d-grid-floor" aria-hidden="true"></div>
+
+    <!-- Blueprint grid overlay -->
+    <div class="si-grid" aria-hidden="true"></div>
+
+    <!-- CSS 3D Starfield Particles -->
+    <div class="si-starfield" aria-hidden="true">
+      <div class="si-star pink"></div>
+      <div class="si-star cyan"></div>
+      <div class="si-star purple"></div>
+      <div class="si-star pink"></div>
+      <div class="si-star cyan"></div>
+      <div class="si-star purple"></div>
+      <div class="si-star pink"></div>
+      <div class="si-star cyan"></div>
+      <div class="si-star purple"></div>
+      <div class="si-star cyan"></div>
     </div>
 
-    <!-- Bat Signal -->
-    <div class="bat-signal-wrapper" aria-hidden="true">
-      <div class="bat-signal-beam"></div>
-      <div class="bat-signal-circle">
-        <svg class="bat-logo-big" viewBox="0 0 200 90">
-          <path d="M100,8 C68,8 44,44 8,28 C28,52 60,52 80,80 C90,68 94,48 100,54 C106,48 110,68 120,80 C140,52 172,52 192,28 C156,44 132,8 100,8Z" fill="#0a0a0a"/>
-        </svg>
-      </div>
-    </div>
+    <!-- Main layout grid -->
+    <div class="si-wrap">
 
-    <!-- Rain Canvas -->
-    <canvas id="batman-rain"></canvas>
+      <!-- LEFT — Glassmorphic text panel -->
+      <div class="si-card-wrap-left">
+        <div class="si-glass-panel">
+          <div class="si-hud-bracket tl"></div>
+          <div class="si-hud-bracket tr"></div>
+          <div class="si-hud-bracket bl"></div>
+          <div class="si-hud-bracket br"></div>
 
-    <!-- Superhero Background Layer -->
-    <div class="section-hero-bg" data-hero="batman" aria-hidden="true">
-      <div class="bg-hero-glow batman-bg-glow"></div>
-      <img src="batman.png" alt="" class="bg-hero-img">
-      <div class="bg-hero-quote-box">
-        <span class="bg-hero-symbol">🦇</span>
-        <p class="bg-hero-quote">"I AM THE NIGHT"</p>
-        <span class="bg-hero-sound-hint">🔊 ACTIVATE BAT-SIGNAL</span>
-      </div>
-    </div>
+          <div class="si-text">
+            <!-- Eyebrow -->
+            <div class="si-eyebrow">
+              <span class="si-eyebrow-line"></span>
+              Quantum Cockpit System v5.0
+            </div>
 
-    <div class="hero-content-batman">
-      <div class="batman-eyebrow">Gotham's Finest Developer</div>
-      <h1 class="batman-name">
-        <span class="bn-line" id="bn1">SACHIN</span>
-        <span class="bn-line" id="bn2">SINGH</span>
-      </h1>
-      <div class="batman-role">Software Engineer &amp; Full Stack Developer</div>
-      <p class="batman-bio">I am the night. I build secure, scalable, and extraordinary applications — with the precision of a detective and the power of a billionaire engineer.</p>
-      <div class="batman-stats-row">
-        <div class="bstat">
-          <span class="bstat-num" data-target="4">0</span>
-          <span class="bstat-label">Years Training</span>
+            <!-- Giant Name -->
+            <h1 class="si-name">
+              <span class="si-name-line1">SACHIN</span>
+              <span class="si-name-line2">SINGH</span>
+              <span class="si-name-bar" aria-hidden="true"></span>
+            </h1>
+
+            <!-- Role -->
+            <div class="si-role">Software Engineer &amp; Full Stack Developer</div>
+
+            <!-- Bio -->
+            <p class="si-bio">
+              I build secure, scalable, and extraordinary digital systems — with the
+              precision of a detective and the power of a billionaire engineer.
+              Every line of code is a weapon. Every deployment, a victory.
+            </p>
+
+            <!-- Live status -->
+            <div class="si-status">
+              <span class="si-ping"></span>
+              Core Connection Stable · Terminal Active
+            </div>
+
+            <!-- Stats -->
+            <div class="si-stats">
+              <div class="si-stat">
+                <span class="si-stat-num" data-target="4">4+</span>
+                <span class="si-stat-label">Yrs Training</span>
+              </div>
+              <div class="si-stat">
+                <span class="si-stat-num" data-target="750">750+</span>
+                <span class="si-stat-label">Problems Solved</span>
+              </div>
+              <div class="si-stat">
+                <span class="si-stat-num" data-target="12">12+</span>
+                <span class="si-stat-label">Projects Built</span>
+              </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="si-ctas">
+              <a href="#projects" class="si-btn-primary">
+                Enter the Cave
+                <svg class="si-btn-arrow" viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10h12M11 4l6 6-6 6"/></svg>
+              </a>
+              <a href="#journey" class="si-btn-ghost">
+                My Origin Story
+                <svg class="si-btn-arrow" viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12M11 4l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="bstat">
-          <span class="bstat-num" data-target="750">0</span>
-          <span class="bstat-label">Problems Solved</span>
+      </div><!-- /left wrap -->
+
+      <!-- RIGHT — Glassmorphic photo panel -->
+      <div class="si-card-wrap-right">
+        <div class="si-glass-panel">
+          <div class="si-hud-bracket tl"></div>
+          <div class="si-hud-bracket tr"></div>
+          <div class="si-hud-bracket bl"></div>
+          <div class="si-hud-bracket br"></div>
+
+          <div class="si-photo-col">
+            <div class="si-photo-frame">
+              <!-- Rotating accent rings — CSS only -->
+              <div class="si-photo-ring" aria-hidden="true"></div>
+              <div class="si-photo-ring-2" aria-hidden="true"></div>
+
+              <!-- Circle photo -->
+              <div class="si-photo-circle">
+                <img src="Sac.png" alt="Sachin Singh" class="si-photo-img" />
+                <div class="si-scan" aria-hidden="true"></div>
+              </div>
+
+              <!-- Tactical HUD Overlay floating above the photo -->
+              <div class="si-photo-hud" aria-hidden="true">
+                <div class="hud-circle-outer"></div>
+                <div class="hud-reticle"></div>
+                <div class="hud-data-readout">SYS_OK v2.08</div>
+              </div>
+            </div>
+
+            <!-- Tech stack pills -->
+            <div class="si-tech-pills">
+              <span class="si-pill">JavaScript</span>
+              <span class="si-pill">TypeScript</span>
+              <span class="si-pill">React</span>
+              <span class="si-pill">Node.js</span>
+              <span class="si-pill">Python</span>
+              <span class="si-pill">Docker</span>
+              <span class="si-pill">PostgreSQL</span>
+              <span class="si-pill">DevOps</span>
+            </div>
+
+            <!-- Atmospheric quote -->
+            <div class="si-quote">"I Am The Night"</div>
+          </div>
         </div>
-        <div class="bstat">
-          <span class="bstat-num" data-target="12">0</span>
-          <span class="bstat-label">Projects Deployed</span>
-        </div>
-      </div>
-      <div class="batman-cta">
-        <a href="#projects" class="btn-bat">ENTER THE CAVE</a>
-        <a href="#journey"  class="btn-bat-ghost">MY ORIGIN STORY</a>
-      </div>
+      </div><!-- /right wrap -->
+
+    </div><!-- /si-wrap -->
+
+    <!-- Scroll indicator -->
+    <div class="si-scroll" aria-hidden="true">
+      <div class="si-scroll-mouse"><div class="si-scroll-wheel"></div></div>
+      <span class="si-scroll-label">Scroll</span>
     </div>
+
   </section>
 
-  <!-- ═══════════ PROJECTS — ARCADE GAME ═══════════ -->
+
+
+
+
+  <!-- PROJECTS - GOTHAM RUNNER -->
   <section id="projects" class="arcade-section">
-    <!-- Game Canvas Background -->
     <canvas id="arcade-game"></canvas>
 
-    <!-- Game UI Overlay -->
     <div id="arcade-ui">
       <div id="arcade-start-screen">
-        <h2>JUMP TO REVEAL</h2>
-        <p>Hit the [ ? ] blocks from below to unlock projects.</p>
-        <p class="controls">Controls: A/D or Left/Right to Move / Space to Jump</p>
-        <button id="arcade-start-btn">START GAME</button>
+        <h2>GOTHAM RUNNER</h2>
+        <div class="arcade-game-subtitle">Project Decryption Protocol</div>
+        <p>Hit the <strong style="color:#ffe600">[ ? ]</strong> mystery blocks from below to decrypt your projects.</p>
+        <p class="controls">
+          <span class="ctrl-key">Left / A &nbsp; Move</span>
+          <span class="ctrl-key">Right / D &nbsp; Move</span>
+          <span class="ctrl-key">Up / W / Space &nbsp; Jump</span>
+        </p>
+        <div class="arcade-actions"
+          style="display: flex; gap: 15px; justify-content: center; margin-top: 20px; flex-wrap: wrap;">
+          <button id="arcade-start-btn" class="btn-bat">DEPLOY BATMAN</button>
+          <button id="arcade-recruiter-btn" class="btn-bat-ghost">RECRUITER BYPASS</button>
+        </div>
       </div>
-      <div id="arcade-hud" style="display: none;">
-        <div class="hud-score">SCORE: <span id="score-val">0</span></div>
-        <div class="hud-status">PROJECTS REVEALED: <span id="projects-revealed-val">0</span> / <span id="projects-total-val">3</span></div>
+
+      <div id="arcade-hud" style="display:none;">
+        <div class="hud-score">SCORE &nbsp;<span id="score-val">000000</span></div>
+        <div class="hud-status">DECRYPTED &nbsp;<span id="projects-revealed-val">0</span> / <span
+            id="projects-total-val">3</span></div>
       </div>
-      <div id="arcade-victory-screen" style="display: none;">
-        <h2>ALL PROJECTS DECRYPTED</h2>
-        <p>Access Granted.</p>
+
+      <div id="arcade-victory-screen" style="display:none;">
+        <h2>ACCESS GRANTED</h2>
+        <div class="arcade-game-subtitle">All files decrypted - Mission complete</div>
+        <p>Gotham is safe.</p>
       </div>
     </div>
 
-    <div class="section-inner arcade-content">
-      <div class="arcade-section-header">
-        <h2 class="arcade-title">PROJECT ARCHIVE</h2>
-        <div class="arcade-divider"></div>
+    <!-- Holographic HUD Panels - top strip, never block gameplay -->
+    <div class="hud-panels" id="arcade-projects-grid">
+
+      <div class="hud-panel locked" data-index="0">
+        <div class="hud-panel-scanline"></div>
+        <div class="hud-panel-corner tl"></div>
+        <div class="hud-panel-corner tr"></div>
+        <div class="hud-panel-corner bl"></div>
+        <div class="hud-panel-corner br"></div>
+        <div class="hud-panel-inner">
+          <div class="hud-file-id">FILE_01</div>
+          <div class="hud-project-name">TypeNews</div>
+          <div class="hud-tags"><span>Next.js</span><span>Tailwind CSS</span><span>News API</span></div>
+          <a href="https://typenews.in/" target="_blank" rel="noopener" class="hud-link">OPEN SITE</a>
+        </div>
       </div>
 
-      <div class="arcade-projects-grid" id="arcade-projects-grid">
-        
-        <!-- Project 1 -->
-        <div class="arcade-project-card locked" data-index="0">
-          <div class="apc-inner">
-            <div class="sc-top">
-              <span class="sc-num">01</span>
+      <div class="hud-panel locked" data-index="1">
+        <div class="hud-panel-scanline"></div>
+        <div class="hud-panel-corner tl"></div>
+        <div class="hud-panel-corner tr"></div>
+        <div class="hud-panel-corner bl"></div>
+        <div class="hud-panel-corner br"></div>
+        <div class="hud-panel-inner">
+          <div class="hud-file-id">FILE_02</div>
+          <div class="hud-project-name">Algorithm Visualizer</div>
+          <div class="hud-tags"><span>JavaScript</span><span>Canvas API</span><span>HTML5</span></div>
+          <a href="#" class="hud-link">OPEN FILE</a>
+        </div>
+      </div>
+
+      <div class="hud-panel locked" data-index="2">
+        <div class="hud-panel-scanline"></div>
+        <div class="hud-panel-corner tl"></div>
+        <div class="hud-panel-corner tr"></div>
+        <div class="hud-panel-corner bl"></div>
+        <div class="hud-panel-corner br"></div>
+        <div class="hud-panel-inner">
+          <div class="hud-file-id">FILE_03</div>
+          <div class="hud-project-name">Secure Auth System</div>
+          <div class="hud-tags"><span>Node.js</span><span>Docker</span><span>Redis</span></div>
+          <a href="#" class="hud-link">OPEN FILE</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Centered Decrypted Holographic Modal -->
+    <div id="project-decryption-modal" class="project-modal" style="display: none;">
+      <div class="project-modal-backdrop"></div>
+      <div class="project-modal-card">
+        <div class="project-modal-scanline"></div>
+        <div class="project-modal-corner tl"></div>
+        <div class="project-modal-corner tr"></div>
+        <div class="project-modal-corner bl"></div>
+        <div class="project-modal-corner br"></div>
+        <div class="project-modal-inner">
+          <div class="project-modal-file-id" id="modal-file-id">FILE_01</div>
+          <h3 class="project-modal-name" id="modal-name">TypeNews</h3>
+          <p class="project-modal-desc" id="modal-desc">TypeNews is a live, high-performance news aggregator and custom
+            real-time typing engine built to deliver the latest global news in an interactive, typing-based reader
+            console. Read updates while reinforcing your typing speed and precision.</p>
+          <div class="project-modal-tags" id="modal-tags">
+            <span>Next.js</span><span>Tailwind CSS</span><span>News API</span>
+          </div>
+          <div class="project-modal-actions">
+            <a href="https://typenews.in/" target="_blank" rel="noopener" class="project-modal-link"
+              id="modal-link">ACCESS PROJECT</a>
+            <button class="project-modal-close" id="modal-close-btn">DISMISS</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══════════ JOURNEY — COSMIC ORBIT SYSTEM ═══════════ -->
+  <section id="journey" class="cosmic-section">
+    <div class="cosmic-container">
+
+      <!-- Interactive Universe Canvas & Overlays -->
+      <div class="cosmic-universe">
+        <canvas id="cosmic-canvas"></canvas>
+
+        <!-- Absolute-positioned DOM badges centered on orbital moons (ensures perfect readability) -->
+        <div id="cosmic-moon-labels" class="moon-labels-container"></div>
+
+        <!-- Click & Drag interactive indicator -->
+        <div class="cosmic-drag-cue">
+          <svg class="drag-icon" viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z" />
+          </svg>
+          <span>Drag to rotate in 3D</span>
+        </div>
+      </div>
+
+      <!-- Cosmic HUD Panel (Right Side Interface) -->
+      <div class="cosmic-hud">
+        <div class="hud-scanlines"></div>
+
+        <div class="hud-header">
+          <div class="hud-tag"><span class="pulse-dot"></span> CURRICULUM RADAR</div>
+          <h3 class="hud-title">ORBITAL SYSTEM</h3>
+        </div>
+
+        <!-- Welcome State -->
+        <div id="hud-default-state" class="hud-state active">
+          <div class="hud-radar">
+            <div class="radar-sweep"></div>
+            <div class="radar-grid"></div>
+            <div class="radar-dots">
+              <span class="radar-dot d1" style="border-color:#4fc3f7"></span>
+              <span class="radar-dot d2" style="border-color:#4caf50"></span>
+              <span class="radar-dot d3" style="border-color:#b388ff"></span>
+              <span class="radar-dot d4" style="border-color:#ffb300"></span>
             </div>
-            <div class="sc-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
-            </div>
-            <h3 class="sc-name">E-Commerce Platform</h3>
-            <p class="sc-desc">Real-time sales dashboard with WebSocket updates, inventory tracking, and user analytics across cloud deployments.</p>
-            <div class="sc-tags"><span>React</span><span>TypeScript</span><span>WebSockets</span><span>PostgreSQL</span></div>
-            <a href="#" class="sc-link">VIEW PROJECT →</a>
+          </div>
+          <p class="hud-intro-text">Trace the trajectory of my B.Tech engineering journey. Click and drag the space
+            viewport to rotate the orbital plane in 3D. Click a planet to scan its curriculum and project its subject
+            moons.</p>
+
+          <div class="hud-quick-select">
+            <button class="hud-select-btn" data-year="0"><span class="btn-color-dot"
+                style="background:#4fc3f7"></span>YEAR 1</button>
+            <button class="hud-select-btn" data-year="1"><span class="btn-color-dot"
+                style="background:#4caf50"></span>YEAR 2</button>
+            <button class="hud-select-btn" data-year="2"><span class="btn-color-dot"
+                style="background:#b388ff"></span>YEAR 3</button>
+            <button class="hud-select-btn" data-year="3"><span class="btn-color-dot"
+                style="background:#ffb300"></span>YEAR 4</button>
           </div>
         </div>
 
-        <!-- Project 2 -->
-        <div class="arcade-project-card locked" data-index="1">
-          <div class="apc-inner">
-            <div class="sc-top">
-              <span class="sc-num">02</span>
-            </div>
-            <div class="sc-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/></svg>
-            </div>
-            <h3 class="sc-name">Algorithm Visualizer</h3>
-            <p class="sc-desc">Interactive canvas tool animating 15+ sorting and pathfinding algorithms with step-by-step trace mode and real-time analysis.</p>
-            <div class="sc-tags"><span>JavaScript</span><span>Canvas API</span><span>HTML5</span></div>
-            <a href="#" class="sc-link">VIEW PROJECT →</a>
+        <!-- Diagnostic/Active Year State -->
+        <div id="hud-locked-state" class="hud-state">
+          <div class="hud-year-badge">
+            <span id="hud-year-num">Y1</span>
+            <span class="hud-badge-divider"></span>
+            <span id="hud-year-dates">2021 – 2022</span>
           </div>
-        </div>
 
-        <!-- Project 3 -->
-        <div class="arcade-project-card locked" data-index="2">
-          <div class="apc-inner">
-            <div class="sc-top">
-              <span class="sc-num">03</span>
+          <h4 id="hud-year-title" class="hud-year-title">THE FOUNDATIONS</h4>
+          <p id="hud-year-desc" class="hud-year-desc">Initiating B.Tech core systems. Forging baseline logical
+            processors, computational math models, and physics modules.</p>
+
+          <div class="hud-telemetry">
+            <div class="hud-tel-box">
+              <span class="tel-label">MODULES</span>
+              <span id="hud-sat-count" class="tel-value">5</span>
             </div>
-            <div class="sc-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            <div class="hud-tel-box">
+              <span class="tel-label">SECTOR</span>
+              <span id="hud-orbit-level" class="tel-value">ORBITAL-1</span>
             </div>
-            <h3 class="sc-name">Secure Auth System</h3>
-            <p class="sc-desc">Cryptographic authentication validating credentials in &lt;3.5ms. Zero dependencies, full audit trail, Redis token caching.</p>
-            <div class="sc-tags"><span>Node.js</span><span>Docker</span><span>AWS</span><span>Redis</span></div>
-            <a href="#" class="sc-link">VIEW PROJECT →</a>
           </div>
+
+          <div class="hud-modules-section">
+            <h5 class="hud-sub-label">SATELLITE READOUT</h5>
+            <ul id="hud-subject-list" class="hud-subject-list">
+              <!-- Loaded dynamically via JavaScript -->
+            </ul>
+          </div>
+
+          <button id="hud-reset-btn" class="hud-reset-btn">
+            <span class="reset-icon">↺</span> ALIGN COORDINATES
+          </button>
         </div>
 
       </div>
+
     </div>
   </section>
 
-  <!-- ═══════════ JOURNEY — MYSTIC CODEX ═══════════ -->
-  <section id="journey" class="mystic-section">
-    <canvas id="mystic-canvas"></canvas>
+  <!-- ═══════════ ARSENAL — QUANTUM REACTOR CORES ═══════════ -->
+  <section id="arsenal" class="hero-skills-section">
 
-    <!-- Soft aurora atmospheric layers -->
-    <div class="aurora-layer aurora-1"></div>
-    <div class="aurora-layer aurora-2"></div>
-    <div class="aurora-layer aurora-3"></div>
+    <!-- Glowing background aura -->
+    <div class="hsk-ambient-glow" id="hsk-ambient-glow" style="--hc:#4fc3f7;--hr:79,195,247"></div>
 
-    <div class="section-inner">
-      <div class="mystic-header">
-        <div class="mystic-eyebrow">✦ &nbsp; FOUR YEARS OF BECOMING &nbsp; ✦</div>
-        <h2 class="mystic-title">The Codex</h2>
-        <p class="mystic-subtitle">A journey written in knowledge — unveiled chapter by chapter</p>
+    <!-- Section header -->
+    <div class="hsk-header">
+      <div class="hsk-eyebrow">
+        <span class="hsk-eyebrow-dot"></span>
+        <span>QUANTUM REACTOR CORE DECK</span>
+        <span class="hsk-eyebrow-dot"></span>
+      </div>
+      <h2 class="hsk-title">SKILLS</h2>
+      <p class="hsk-sub">Swipe/drag to spin the cylinder vault. Click cores or manual controls to activate diagnostic
+        streams.</p>
+    </div>
+
+    <!-- 3D Carousel Viewport -->
+    <div class="hsk-carousel-container" id="hsk-carousel-container">
+
+      <!-- Energy stream canvas background -->
+      <canvas id="hsk-plasma-canvas" class="hsk-plasma-canvas"></canvas>
+
+      <!-- Central Animated Fusion Reactor Core -->
+      <div class="hsk-fusion-core" id="hsk-fusion-core" aria-hidden="true" style="--hc:#4fc3f7;--hr:79,195,247">
+        <svg viewBox="0 0 100 100" class="hsk-fusion-svg">
+          <circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="0.6" stroke-dasharray="3, 6" fill="none"
+            class="spin-slow" />
+          <circle cx="50" cy="50" r="38" stroke="currentColor" stroke-width="0.4" stroke-dasharray="8, 16" fill="none"
+            class="spin-reverse" />
+          <circle cx="50" cy="50" r="28" stroke="currentColor" stroke-width="0.8" fill="none" />
+          <path d="M50 8 A42 42 0 0 1 92 50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"
+            class="spin-slow" />
+          <path d="M50 92 A42 42 0 0 1 8 50" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"
+            class="spin-reverse" />
+          <circle cx="50" cy="50" r="14" fill="none" stroke="currentColor" stroke-width="1" class="pulse-glow" />
+          <!-- Central plasma node -->
+          <circle cx="50" cy="50" r="6" fill="currentColor" class="pulse-core" />
+        </svg>
+        <div class="hsk-fusion-glow"></div>
       </div>
 
-      <!-- Single cinematic reveal frame -->
-      <div class="cinema-frame" id="cinema-frame">
+      <!-- 3D Rotating Turntable Ring -->
+      <div class="hsk-carousel-turntable" id="hsk-carousel-turntable">
 
-        <!-- Letterbox bars (cinematic feel) -->
-        <div class="cf-bar cf-bar-top"></div>
-        <div class="cf-bar cf-bar-bottom"></div>
+        <!-- ── CORE 1: Languages (ice blue) ── -->
+        <div class="hsk-panel" id="hsk-panel-0" data-index="0" style="--hc:#4fc3f7;--hr:79,195,247;--ha:0.12">
 
-        <!-- Main text stage -->
-        <div class="cf-stage">
-          <div class="cf-label" id="cf-label"></div>
-          <div class="cf-text"  id="cf-text"></div>
-        </div>
-
-        <!-- Year progress dots + counter -->
-        <div class="cf-meta">
-          <div class="cf-dots">
-            <span class="cf-dot" data-i="0"></span>
-            <span class="cf-dot" data-i="1"></span>
-            <span class="cf-dot" data-i="2"></span>
-            <span class="cf-dot" data-i="3"></span>
+          <!-- Holographic SVG spinning reactor core bg -->
+          <div class="hsk-hero-bg" aria-hidden="true">
+            <svg class="hsk-reactor-svg" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="42" stroke="var(--hc)" stroke-width="0.8" stroke-dasharray="4, 6" fill="none"
+                class="spin-slow" />
+              <circle cx="50" cy="50" r="32" stroke="var(--hc)" stroke-width="0.5" stroke-dasharray="10, 20" fill="none"
+                class="spin-reverse" />
+              <circle cx="50" cy="50" r="22" stroke="var(--hc)" stroke-width="1.2" fill="none" />
+              <circle cx="50" cy="50" r="6" fill="var(--hc)" class="pulse-glow" />
+              <path d="M50 10 L50 90 M10 50 L90 50" stroke="var(--hc)" stroke-width="0.3" opacity="0.4" />
+            </svg>
+            <div class="hsk-hero-label-bg">CORE 01</div>
           </div>
-          <div class="cf-counter" id="cf-counter">&nbsp;</div>
+
+          <!-- Top accent strip -->
+          <div class="hsk-top-strip">
+            <span class="hsk-hero-tag">[ PROPULSION CORE 01 ]</span>
+            <span class="hsk-domain-tag">LANGUAGES</span>
+          </div>
+
+          <!-- Skill content -->
+          <div class="hsk-content">
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">JavaScript ES6+</span>
+              <span class="hsk-skill-pct">95%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="95"></div>
+            </div>
+
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">TypeScript</span>
+              <span class="hsk-skill-pct">90%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="90"></div>
+            </div>
+
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">Python</span>
+              <span class="hsk-skill-pct">85%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="85"></div>
+            </div>
+
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">C++</span>
+              <span class="hsk-skill-pct">80%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="80"></div>
+            </div>
+
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">Java</span>
+              <span class="hsk-skill-pct">75%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="75"></div>
+            </div>
+          </div>
+
+          <!-- Bottom power level -->
+          <div class="hsk-power-bar">
+            <span class="hsk-power-label">CORE OUTPUT LEVEL</span>
+            <div class="hsk-power-fill" data-w="90"></div>
+          </div>
         </div>
 
+        <!-- ── CORE 2: Frontend (jade green) ── -->
+        <div class="hsk-panel" id="hsk-panel-1" data-index="1" style="--hc:#4caf50;--hr:76,175,80;--ha:0.12">
+
+          <div class="hsk-hero-bg" aria-hidden="true">
+            <svg class="hsk-reactor-svg" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="42" stroke="var(--hc)" stroke-width="0.8" stroke-dasharray="4, 6" fill="none"
+                class="spin-slow" />
+              <circle cx="50" cy="50" r="32" stroke="var(--hc)" stroke-width="0.5" stroke-dasharray="10, 20" fill="none"
+                class="spin-reverse" />
+              <circle cx="50" cy="50" r="22" stroke="var(--hc)" stroke-width="1.2" fill="none" />
+              <circle cx="50" cy="50" r="6" fill="var(--hc)" class="pulse-glow" />
+              <path d="M50 10 L50 90 M10 50 L90 50" stroke="var(--hc)" stroke-width="0.3" opacity="0.4" />
+            </svg>
+            <div class="hsk-hero-label-bg">CORE 02</div>
+          </div>
+
+          <div class="hsk-top-strip">
+            <span class="hsk-hero-tag">[ DEFLECTOR SHIELD CORE 02 ]</span>
+            <span class="hsk-domain-tag">FRONTEND</span>
+          </div>
+
+          <div class="hsk-content">
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">React.js</span>
+              <span class="hsk-skill-pct">95%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="95"></div>
+            </div>
+
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">Next.js</span>
+              <span class="hsk-skill-pct">88%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="88"></div>
+            </div>
+
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">HTML5 / CSS3</span>
+              <span class="hsk-skill-pct">92%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="92"></div>
+            </div>
+
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">TailwindCSS</span>
+              <span class="hsk-skill-pct">90%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="90"></div>
+            </div>
+
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">Canvas API</span>
+              <span class="hsk-skill-pct">82%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="82"></div>
+            </div>
+          </div>
+
+          <div class="hsk-power-bar">
+            <span class="hsk-power-label">CORE OUTPUT LEVEL</span>
+            <div class="hsk-power-fill" data-w="92"></div>
+          </div>
+        </div>
+
+        <!-- ── CORE 3: Backend (violet) ── -->
+        <div class="hsk-panel" id="hsk-panel-2" data-index="2" style="--hc:#b388ff;--hr:179,136,255;--ha:0.12">
+
+          <div class="hsk-hero-bg" aria-hidden="true">
+            <svg class="hsk-reactor-svg" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="42" stroke="var(--hc)" stroke-width="0.8" stroke-dasharray="4, 6" fill="none"
+                class="spin-slow" />
+              <circle cx="50" cy="50" r="32" stroke="var(--hc)" stroke-width="0.5" stroke-dasharray="10, 20" fill="none"
+                class="spin-reverse" />
+              <circle cx="50" cy="50" r="22" stroke="var(--hc)" stroke-width="1.2" fill="none" />
+              <circle cx="50" cy="50" r="6" fill="var(--hc)" class="pulse-glow" />
+              <path d="M50 10 L50 90 M10 50 L90 50" stroke="var(--hc)" stroke-width="0.3" opacity="0.4" />
+            </svg>
+            <div class="hsk-hero-label-bg">CORE 03</div>
+          </div>
+
+          <div class="hsk-top-strip">
+            <span class="hsk-hero-tag">[ DATA COMBUSTION CORE 03 ]</span>
+            <span class="hsk-domain-tag">BACKEND</span>
+          </div>
+
+          <div class="hsk-content">
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">Node.js / Express</span>
+              <span class="hsk-skill-pct">90%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="90"></div>
+            </div>
+
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">RESTful APIs</span>
+              <span class="hsk-skill-pct">92%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="92"></div>
+            </div>
+
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">PostgreSQL / MongoDB</span>
+              <span class="hsk-skill-pct">86%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="86"></div>
+            </div>
+
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">Redis Caching</span>
+              <span class="hsk-skill-pct">80%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="80"></div>
+            </div>
+
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">GraphQL</span>
+              <span class="hsk-skill-pct">78%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="78"></div>
+            </div>
+          </div>
+
+          <div class="hsk-power-bar">
+            <span class="hsk-power-label">CORE OUTPUT LEVEL</span>
+            <div class="hsk-power-fill" data-w="86"></div>
+          </div>
+        </div>
+
+        <!-- ── CORE 4: DevOps (amber) ── -->
+        <div class="hsk-panel" id="hsk-panel-3" data-index="3" style="--hc:#ffb300;--hr:255,179,0;--ha:0.12">
+
+          <div class="hsk-hero-bg" aria-hidden="true">
+            <svg class="hsk-reactor-svg" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="42" stroke="var(--hc)" stroke-width="0.8" stroke-dasharray="4, 6" fill="none"
+                class="spin-slow" />
+              <circle cx="50" cy="50" r="32" stroke="var(--hc)" stroke-width="0.5" stroke-dasharray="10, 20" fill="none"
+                class="spin-reverse" />
+              <circle cx="50" cy="50" r="22" stroke="var(--hc)" stroke-width="1.2" fill="none" />
+              <circle cx="50" cy="50" r="6" fill="var(--hc)" class="pulse-glow" />
+              <path d="M50 10 L50 90 M10 50 L90 50" stroke="var(--hc)" stroke-width="0.3" opacity="0.4" />
+            </svg>
+            <div class="hsk-hero-label-bg">CORE 04</div>
+          </div>
+
+          <div class="hsk-top-strip">
+            <span class="hsk-hero-tag">[ CLOUD HYPERDRIVE CORE 04 ]</span>
+            <span class="hsk-domain-tag">DEVOPS &amp; TOOLS</span>
+          </div>
+
+          <div class="hsk-content">
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">Docker</span>
+              <span class="hsk-skill-pct">85%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="85"></div>
+            </div>
+
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">Git &amp; GitHub</span>
+              <span class="hsk-skill-pct">92%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="92"></div>
+            </div>
+
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">Linux / Bash</span>
+              <span class="hsk-skill-pct">88%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="88"></div>
+            </div>
+
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">AWS Services</span>
+              <span class="hsk-skill-pct">78%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="78"></div>
+            </div>
+
+            <div class="hsk-skill-row">
+              <span class="hsk-skill-name">CI/CD Pipelines</span>
+              <span class="hsk-skill-pct">80%</span>
+            </div>
+            <div class="hsk-bar-wrap">
+              <div class="hsk-bar" data-w="80"></div>
+            </div>
+          </div>
+
+          <div class="hsk-power-bar">
+            <span class="hsk-power-label">CORE OUTPUT LEVEL</span>
+            <div class="hsk-power-fill" data-w="84"></div>
+          </div>
+        </div>
+
+      </div><!-- /hsk-carousel-turntable -->
+    </div><!-- /hsk-carousel-container -->
+
+    <!-- Command Deck Controls -->
+    <div class="hsk-command-deck">
+      <div class="hsk-telemetry">
+        <div class="hsk-telemetry-item">
+          <span class="telemetry-label">SYSTEM ROTATION</span>
+          <span class="telemetry-val" id="hsk-tel-deg">0.00°</span>
+        </div>
+        <div class="hsk-telemetry-item">
+          <span class="telemetry-label">REACTOR YAW VECTORS</span>
+          <span class="telemetry-val" id="hsk-tel-yaw">0.00 rad</span>
+        </div>
+        <div class="hsk-telemetry-item">
+          <span class="telemetry-label">DIAGNOSTIC LOCK</span>
+          <span class="telemetry-val" id="hsk-tel-status" style="color:#4fc3f7">ACTIVE - CORE 01</span>
+        </div>
+      </div>
+
+      <div class="hsk-console-buttons" id="hsk-console-buttons">
+        <button class="hsk-console-btn active" data-index="0" style="--hc: #4fc3f7">
+          <span class="hsk-btn-glow"></span>
+          <span class="hsk-btn-num">01</span>
+          <span class="hsk-btn-label">LANGUAGES</span>
+        </button>
+        <button class="hsk-console-btn" data-index="1" style="--hc: #4caf50">
+          <span class="hsk-btn-glow"></span>
+          <span class="hsk-btn-num">02</span>
+          <span class="hsk-btn-label">FRONTEND</span>
+        </button>
+        <button class="hsk-console-btn" data-index="2" style="--hc: #b388ff">
+          <span class="hsk-btn-glow"></span>
+          <span class="hsk-btn-num">03</span>
+          <span class="hsk-btn-label">BACKEND</span>
+        </button>
+        <button class="hsk-console-btn" data-index="3" style="--hc: #ffb300">
+          <span class="hsk-btn-glow"></span>
+          <span class="hsk-btn-num">04</span>
+          <span class="hsk-btn-label">DEVOPS</span>
+        </button>
+      </div>
+
+      <div class="hsk-override-wheel-container">
+        <span class="hsk-override-label">OVERRIDE ROTATION WHEEL</span>
+        <div class="hsk-override-wheel-track">
+          <div class="hsk-override-wheel" id="hsk-override-wheel">
+            <div class="hsk-wheel-notch notch-0"></div>
+            <div class="hsk-wheel-notch notch-1"></div>
+            <div class="hsk-wheel-notch notch-2"></div>
+            <div class="hsk-wheel-notch notch-3"></div>
+            <div class="hsk-wheel-knob"></div>
+          </div>
+        </div>
       </div>
     </div>
+
   </section>
 
-  <!-- ═══════════ ACTIVITIES — FLASH / SPEED ═══════════ -->
-  <section id="activities" class="flash-section">
+  <!-- ═══════════ ACTIVITIES — WALLET CARD PULL ═══════════ -->
+
+  <section id="activities" class="wlt-section">
     <canvas id="lightning-canvas"></canvas>
 
     <!-- Superhero Background Layer -->
-    <div class="section-hero-bg" data-hero="flash" aria-hidden="true">
+    <div class="section-hero-bg" data-hero="batman" aria-hidden="true">
       <div class="bg-hero-glow flash-bg-glow"></div>
-      <img src="flash.png" alt="" class="bg-hero-img">
+      <img src="batman.png" alt="" class="bg-hero-img">
       <div class="bg-hero-quote-box">
-        <span class="bg-hero-symbol">⚡</span>
-        <p class="bg-hero-quote">"THE FASTEST MAN ALIVE"</p>
-        <span class="bg-hero-sound-hint">🔊 SPEED FORCE LIGHTNING</span>
+        <span class="bg-hero-symbol">&#x1F987;</span>
+        <p class="bg-hero-quote">"I AM THE NIGHT"</p>
+        <span class="bg-hero-sound-hint">&#x1F50A; BATCAVE SECURITY SYSTEMS</span>
       </div>
     </div>
 
-    <div class="section-inner">
-      <div class="flash-header">
-        <div class="flash-bolt" aria-hidden="true">
-          <svg viewBox="0 0 40 60" width="40" height="60">
-            <path d="M25,2 L8,32 L18,32 L15,58 L32,28 L22,28 Z" fill="#FFD700" stroke="#FF8C00" stroke-width="1"/>
-          </svg>
-        </div>
-        <h2 class="flash-title">SPEED RUNS</h2>
-        <div class="flash-sub">Activities &amp; Domains</div>
+    <div class="section-inner wlt-inner">
+
+      <!-- Section eyebrow -->
+      <div class="wlt-eyebrow">
+        <span class="wlt-eyebrow-line"></span>
+        <span class="wlt-eyebrow-text">SKILL VAULT</span>
+        <span class="wlt-eyebrow-line"></span>
       </div>
 
-      <div class="flash-grid">
+      <!-- Main stage: card deck + info panel -->
+      <div class="wlt-stage">
 
-        <div class="flash-card" data-delay="0">
-          <div class="flash-number">01</div>
-          <div class="flash-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"/></svg>
+        <!-- LEFT — live info readout updates with each card -->
+        <div class="wlt-info" id="wlt-info">
+          <div class="wlt-info-idx" id="wlt-info-idx">01 / 04</div>
+          <div class="wlt-info-stat" id="wlt-info-stat">90<span>%</span></div>
+          <div class="wlt-info-name" id="wlt-info-name">ALGORITHMS</div>
+          <div class="wlt-info-line"></div>
+          <p class="wlt-info-desc" id="wlt-info-desc">
+            750+ LeetCode problems. Graph theory, DP, and greedy — solved with surgical precision.
+          </p>
+          <div class="wlt-info-tags" id="wlt-info-tags">
+            <span>LeetCode</span><span>Graphs</span><span>DP</span><span>Greedy</span>
           </div>
-          <h3 class="flash-card-title">Algorithms</h3>
-          <p class="flash-card-desc">750+ LeetCode problems. Graph theory, DP, greedy — solved at the speed of lightning.</p>
-          <div class="flash-speed-bar">
-            <div class="fsb-fill" data-pct="90"></div>
+          <div class="wlt-info-kvs" id="wlt-info-kvs">
+            <div class="wlt-kv"><span class="wlt-k">Problems</span><span class="wlt-v">750+</span></div>
+            <div class="wlt-kv"><span class="wlt-k">Years</span><span class="wlt-v">3yr</span></div>
+            <div class="wlt-kv"><span class="wlt-k">Rank</span><span class="wlt-v">Top 5%</span></div>
           </div>
-          <div class="flash-tags"><span>LeetCode</span><span>Graph Theory</span><span>DP</span></div>
         </div>
 
-        <div class="flash-card" data-delay="80">
-          <div class="flash-number">02</div>
-          <div class="flash-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-          </div>
-          <h3 class="flash-card-title">Open Source</h3>
-          <p class="flash-card-desc">Contributing to developer tools, server protocols, and dashboard libraries.</p>
-          <div class="flash-speed-bar">
-            <div class="fsb-fill" data-pct="75"></div>
-          </div>
-          <div class="flash-tags"><span>GitHub</span><span>OSS</span><span>APIs</span></div>
-        </div>
+        <!-- CENTER — wallet + card deck -->
+        <div class="wlt-center">
 
-        <div class="flash-card" data-delay="160">
-          <div class="flash-number">03</div>
-          <div class="flash-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <!-- Progress dots -->
+          <div class="wlt-dots" id="wlt-dots">
+            <span class="wlt-dot" data-i="0"></span>
+            <span class="wlt-dot" data-i="1"></span>
+            <span class="wlt-dot" data-i="2"></span>
+            <span class="wlt-dot" data-i="3"></span>
           </div>
-          <h3 class="flash-card-title">Security</h3>
-          <p class="flash-card-desc">Cryptographic auth tokens, pen testing, auditing codebases for injection flaws.</p>
-          <div class="flash-speed-bar">
-            <div class="fsb-fill" data-pct="82"></div>
-          </div>
-          <div class="flash-tags"><span>Crypto</span><span>Pen Testing</span><span>Zero-Trust</span></div>
-        </div>
 
-        <div class="flash-card" data-delay="240">
-          <div class="flash-number">04</div>
-          <div class="flash-icon-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75M9 11a4 4 0 100-8 4 4 0 000 8z"/></svg>
-          </div>
-          <h3 class="flash-card-title">Leadership</h3>
-          <p class="flash-card-desc">Mentoring teams, managing incidents, writing post-mortems. Moving at Flash speed.</p>
-          <div class="flash-speed-bar">
-            <div class="fsb-fill" data-pct="70"></div>
-          </div>
-          <div class="flash-tags"><span>Mentoring</span><span>Incident Mgmt</span></div>
-        </div>
+          <!-- The wallet slot + card stack -->
+          <div class="wlt-wallet" id="wlt-wallet">
 
-      </div>
+            <!-- Cards — stacked inside slot, bottom card first -->
+            <!-- JS will reorder z-index as cards cycle -->
+            <div class="wlt-card" id="wlt-card-3" style="--ck:#A78BFA;--cs:167,139,250;--ci:3">
+              <div class="wlt-card-stripe"></div>
+              <div class="wlt-card-num">04</div>
+              <div class="wlt-card-hero-label">CORPORATE LIFE</div>
+              <div class="wlt-card-glow"></div>
+            </div>
+
+            <div class="wlt-card" id="wlt-card-2" style="--ck:#FF4D6D;--cs:255,77,109;--ci:2">
+              <div class="wlt-card-stripe"></div>
+              <div class="wlt-card-num">03</div>
+              <div class="wlt-card-hero-label">SECURITY</div>
+              <div class="wlt-card-glow"></div>
+            </div>
+
+            <div class="wlt-card" id="wlt-card-1" style="--ck:#00FFAA;--cs:0,255,170;--ci:1">
+              <div class="wlt-card-stripe"></div>
+              <div class="wlt-card-num">02</div>
+              <div class="wlt-card-hero-label">OPEN SOURCE</div>
+              <div class="wlt-card-glow"></div>
+            </div>
+
+            <div class="wlt-card" id="wlt-card-0" style="--ck:#FFD700;--cs:255,215,0;--ci:0">
+              <div class="wlt-card-stripe"></div>
+              <div class="wlt-card-num">01</div>
+              <div class="wlt-card-hero-label">ALGORITHMS</div>
+              <div class="wlt-card-glow"></div>
+            </div>
+
+            <!-- Physical wallet slot -->
+            <div class="wlt-slot" aria-hidden="true">
+              <div class="wlt-slot-inner">
+                <span class="wlt-slot-brand">SACHIN.DEV</span>
+                <span class="wlt-slot-chip"></span>
+              </div>
+            </div>
+
+          </div><!-- /wlt-wallet -->
+
+          <!-- Pull hint -->
+          <div class="wlt-hint" id="wlt-hint">
+            <span class="wlt-hint-arrow">↑</span>
+            <span class="wlt-hint-text">auto cycling</span>
+          </div>
+
+        </div><!-- /wlt-center -->
+
+      </div><!-- /wlt-stage -->
+
     </div>
   </section>
 
+
+
   <!-- ═══════════ SECTION 5: CONNECT / PROFILE ═══════════ -->
+
   <section id="connect" class="aurora-section">
 
     <!-- Aurora background blobs -->
@@ -346,23 +966,28 @@
       <div class="bento-grid">
 
         <!-- CARD 1 — LinkedIn (tall, left) -->
-        <a href="https://linkedin.com/in/sachinsingh" target="_blank" rel="noopener"
-           class="bento-card bento-li" data-tilt>
+        <a href="https://www.linkedin.com/in/sachin-singh-29360423ss/" target="_blank" rel="noopener"
+          class="bento-card bento-li" data-tilt>
           <div class="bento-bg-shine"></div>
           <div class="bento-top">
             <div class="bento-platform-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                <path
+                  d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
               </svg>
               LinkedIn
             </div>
             <div class="bento-arrow">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
             </div>
           </div>
           <div class="bento-big-icon li-icon">
             <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+              <path
+                d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
             </svg>
           </div>
           <div class="bento-footer">
@@ -372,25 +997,37 @@
         </a>
 
         <!-- CARD 2 — LeetCode (wide hero) -->
-        <a href="https://leetcode.com/u/sachinsingh/" target="_blank" rel="noopener"
-           class="bento-card bento-lc" data-tilt>
+        <a href="https://leetcode.com/u/Sachin2930/" target="_blank" rel="noopener" class="bento-card bento-lc"
+          data-tilt>
           <div class="bento-bg-shine"></div>
           <div class="bento-top">
             <div class="bento-platform-badge lc-badge">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z" />
+              </svg>
               LeetCode
+              <button id="lc-sync-btn" aria-label="Sync LeetCode Database"
+                style="background:none; border:none; color:#FFA116; margin-left:8px; cursor:pointer; padding:0; display:inline-flex; align-items:center;">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"
+                  style="transition: transform 0.6s ease;">
+                  <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 11-.57-8.38l5.67-5.67" />
+                </svg>
+              </button>
             </div>
             <div class="bento-arrow">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
             </div>
           </div>
           <div class="lc-stats-wrap">
             <div class="lc-ring-bento">
               <svg viewBox="0 0 120 120" width="120" height="120">
-                <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,185,0,0.15)" stroke-width="8"/>
+                <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,185,0,0.15)" stroke-width="8" />
                 <circle id="lc-venom-arc" cx="60" cy="60" r="50" fill="none" stroke="#FFA116" stroke-width="8"
-                  stroke-dasharray="314" stroke-dashoffset="314" stroke-linecap="round"
-                  transform="rotate(-90 60 60)"/>
+                  stroke-dasharray="314" stroke-dashoffset="314" stroke-linecap="round" transform="rotate(-90 60 60)" />
               </svg>
               <div class="lc-ring-center">
                 <span id="lc-venom-num" data-target="350">0</span>
@@ -418,16 +1055,21 @@
         </div>
 
         <!-- CARD 4 — GitHub (wide bottom) -->
-        <a href="https://github.com/sachinsingh2101" target="_blank" rel="noopener"
-           class="bento-card bento-gh" data-tilt>
+        <a href="https://github.com/Sachin2936" target="_blank" rel="noopener" class="bento-card bento-gh" data-tilt>
           <div class="bento-bg-shine"></div>
           <div class="bento-top">
             <div class="bento-platform-badge gh-badge">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+              </svg>
               GitHub
             </div>
             <div class="bento-arrow">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
             </div>
           </div>
           <!-- Contribution bars -->
@@ -436,17 +1078,19 @@
           </div>
           <div class="bento-footer">
             <p class="bento-title">GitHub</p>
-            <p class="bento-sub">sachinsingh2101 · Open Source Contributor</p>
+            <p class="bento-sub">Sachin2936 · Open Source Contributor</p>
           </div>
         </a>
 
         <!-- CARD 5 — Email CTA (small) -->
-        <a href="mailto:sachinsingh@example.com" class="bento-card bento-cta" data-tilt>
+        <a href="mailto:sachin31033@gmail.com" class="bento-card bento-cta" data-tilt>
           <div class="bento-bg-shine"></div>
           <div class="cta-icon">✉️</div>
           <p class="cta-text">Drop me an email</p>
           <div class="cta-pulse-ring"></div>
         </a>
+
+
 
       </div><!-- /bento-grid -->
     </div>
@@ -456,18 +1100,61 @@
   <footer id="footer">
     <div class="footer-inner">
       <svg class="foot-bat" viewBox="0 0 100 45" width="50" height="22">
-        <path d="M50,4 C34,4 22,22 4,14 C14,26 30,26 40,40 C45,34 47,24 50,27 C53,24 55,34 60,40 C70,26 86,26 96,14 C78,22 66,4 50,4Z" fill="rgba(255,215,0,0.4)"/>
+        <path
+          d="M50,4 C34,4 22,22 4,14 C14,26 30,26 40,40 C45,34 47,24 50,27 C53,24 55,34 60,40 C70,26 86,26 96,14 C78,22 66,4 50,4Z"
+          fill="rgba(255,215,0,0.4)" />
       </svg>
       <p>Designed &amp; Coded by <strong>Sachin Singh</strong> &nbsp;·&nbsp; 2026</p>
       <p class="foot-sub">"It's not who I am underneath, but what I build that defines me."</p>
     </div>
   </footer>
 
+  <!-- ═══════════ BATCOMPUTER TERMINAL ═══════════ -->
+  <button id="term-toggle" aria-label="Toggle Batcomputer Terminal" class="term-toggle-btn">
+    <span class="term-toggle-icon">💻</span>
+    <span class="term-toggle-text">BAT-CONSOLE</span>
+  </button>
+
+  <div id="bat-terminal" class="bat-terminal-window">
+    <div class="term-header">
+      <div class="term-dots">
+        <span class="term-dot close"></span>
+        <span class="term-dot minimize"></span>
+        <span class="term-dot maximize"></span>
+      </div>
+      <div class="term-title">BATCOMPUTER v2.08 // SECURE CONNECTION</div>
+      <button id="term-close-btn" class="term-close-x">&times;</button>
+    </div>
+    <div class="term-body" id="term-body">
+      <div class="term-output" id="term-output">
+        <div class="term-line system">SECURE CONNECTION ESTABLISHED. ALL DECRYPTORS GO.</div>
+        <div class="term-line system">TYPE <strong style="color: #ffb900;">help</strong> TO LIST AVAILABLE CAVERN
+          PROTOCOLS.</div>
+        <div class="term-line">&nbsp;</div>
+      </div>
+      <div class="term-input-line">
+        <span class="term-prompt">BAT-SYS:~$</span>
+        <input type="text" id="term-input" autocomplete="off" spellcheck="false" placeholder="Type help..." />
+      </div>
+    </div>
+  </div>
+
   <!-- Click Ripple container -->
   <div id="ripple-container"></div>
 
+
+
   <script src="tilt.js"></script>
-  <script src="hero.js?v=23"></script>
+  <!-- hero-plasma.js removed — no canvas in new hero design -->
+  <!-- hero-particles.js removed — no canvas in new hero design -->
+  <!-- hero.js removed — old hero logic for plasma/bat-signal not needed -->
+  <!-- reveal-scratch.js removed — no scratch canvas in new hero design -->
   <script src="mario-game.js"></script>
+  <script src="activities-fx.js"></script>
+  <script src="hero-skills.js"></script>
+  <script src="orbit-system.js"></script>
+  <script src="cursor-fx.js"></script>
+  <script src="hero-3d.js"></script>
 </body>
+
 </html>

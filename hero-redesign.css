@@ -1,0 +1,987 @@
+/* ═══════════════════════════════════════════════════════════
+   HERO v5 — "NEBULA QUANTUM TERMINAL"
+   Pure CSS 3D Transforms & GPU-Accelerated Compositing.
+   Zero CPU-based canvases. Locked 60fps execution.
+   Features:
+   - Dynamic gaseous nebula backdrop (interactive lighting)
+   - High-end glassmorphic terminal capsule cards
+   - Synthwave infinite perspective grid floor
+   - Concentric rotating tactical HUD circles
+   - Futuristic cybernetic diagnostic readouts & UI accents
+═══════════════════════════════════════════════════════════ */
+
+/* ── Global Theme Colors ── */
+:root {
+  --neon-pink: #ff007f;
+  --neon-pink-glow: rgba(255, 0, 127, 0.4);
+  --neon-purple: #7900ff;
+  --neon-purple-glow: rgba(121, 0, 255, 0.4);
+  --neon-cyan: #00e5ff;
+  --neon-cyan-glow: rgba(0, 229, 255, 0.4);
+  --surface: #04040a;
+  --glass-bg: rgba(12, 10, 28, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text: #f0f0f8;
+  --text-muted: rgba(240, 240, 248, 0.55);
+}
+
+/* ═══════════════════════════════════════
+   SECTION SETUP — 3D Perspective Context
+═══════════════════════════════════════ */
+#home.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--surface);
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  padding: 0;
+}
+
+/* Hide old skyline and other heavy canvas backgrounds */
+.gotham-skyline,
+.bat-signal-wrapper,
+#batman-rain,
+.section-hero-bg,
+#hero-plasma-canvas,
+.hero-morph-orb,
+#hero-particle-field,
+.hero-ambient-bloom,
+.hero-corner-tl,
+.hero-corner-br,
+.hero-split,
+.hero-scroll-indicator {
+  display: none !important;
+}
+
+/* ═══════════════════════════════════════
+   DYNAMIC GASEOUS NEBULA BACKDROP (GPU-only)
+═══════════════════════════════════════ */
+/* Radial Aurora 1 (Magenta drift) */
+.si-aurora-gold {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: -150px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(255, 0, 127, 0.1) 0%, transparent 70%);
+  animation: nebulaDrift1 22s ease-in-out infinite alternate;
+  transform: translateZ(-200px);
+  pointer-events: none;
+}
+
+/* Radial Aurora 2 (Purple drift) */
+.si-aurora-cyan {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  bottom: -200px;
+  right: -100px;
+  background: radial-gradient(circle, rgba(121, 0, 255, 0.08) 0%, transparent 70%);
+  animation: nebulaDrift2 26s ease-in-out infinite alternate;
+  transform: translateZ(-250px);
+  pointer-events: none;
+}
+
+/* Dynamic Interactive Lighting centered on user cursor */
+#home.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 600px at var(--mouse-pct-x, 50%) var(--mouse-pct-y, 50%),
+    rgba(0, 229, 255, 0.045) 0%,
+    rgba(121, 0, 255, 0.015) 50%,
+    transparent 80%
+  );
+  z-index: 2;
+  will-change: background;
+}
+
+@keyframes nebulaDrift1 {
+  from { transform: translate3d(0, 0, -200px) scale(1); }
+  to   { transform: translate3d(80px, 100px, -200px) scale(1.2); }
+}
+@keyframes nebulaDrift2 {
+  from { transform: translate3d(0, 0, -250px) scale(1); }
+  to   { transform: translate3d(-80px, -100px, -250px) scale(1.15); }
+}
+
+/* ═══════════════════════════════════════
+   3D PERSPECTIVE SYNTHWAVE GRID FLOOR
+═══════════════════════════════════════ */
+.si-3d-grid-floor {
+  position: absolute;
+  bottom: -200px;
+  left: -50%;
+  width: 200%;
+  height: 60vh;
+  background-image: 
+    linear-gradient(rgba(121, 0, 255, 0.12) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, rgba(121, 0, 255, 0.12) 1.5px, transparent 1.5px);
+  background-size: 80px 80px;
+  background-position: center top;
+  transform: rotateX(82deg) translateZ(0);
+  transform-origin: center top;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 50%, transparent 95%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 50%, transparent 95%);
+  animation: gridScroll 16s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes gridScroll {
+  from { background-position: 0 0; }
+  to   { background-position: 0 800px; }
+}
+
+/* Static technical blueprint grid overlay */
+.si-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0, 229, 255, 0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.012) 1px, transparent 1px);
+  background-size: 100px 100px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 20%, transparent 75%);
+  z-index: 2;
+}
+
+/* ═══════════════════════════════════════
+   CSS 3D PARTICLE STARFIELD (GPU Accelerated)
+═══════════════════════════════════════ */
+.si-starfield {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  transform-style: preserve-3d;
+}
+
+.si-star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.3;
+  will-change: transform;
+}
+.si-star.pink { background: var(--neon-pink); box-shadow: 0 0 8px var(--neon-pink); }
+.si-star.cyan { background: var(--neon-cyan); box-shadow: 0 0 8px var(--neon-cyan); }
+.si-star.purple { background: var(--neon-purple); box-shadow: 0 0 8px var(--neon-purple); }
+
+/* Drifting keyframes for starfield dots */
+.si-star:nth-child(1)  { top: 15%; left: 10%; --tz: -80px;  animation: floatStar 12s ease-in-out infinite alternate; }
+.si-star:nth-child(2)  { top: 25%; left: 85%; --tz: -120px; animation: floatStar 14s ease-in-out infinite alternate; }
+.si-star:nth-child(3)  { top: 70%; left: 15%; --tz: -60px;  animation: floatStar 10s ease-in-out infinite alternate; }
+.si-star:nth-child(4)  { top: 80%; left: 80%; --tz: -140px; animation: floatStar 16s ease-in-out infinite alternate; }
+.si-star:nth-child(5)  { top: 40%; left: 5%;  --tz: -100px; animation: floatStar 13s ease-in-out infinite alternate; }
+.si-star:nth-child(6)  { top: 10%; left: 70%; --tz: -90px;  animation: floatStar 11s ease-in-out infinite alternate; }
+.si-star:nth-child(7)  { top: 85%; left: 45%; --tz: -50px;  animation: floatStar 9s ease-in-out infinite alternate; }
+.si-star:nth-child(8)  { top: 45%; left: 95%; --tz: -110px; animation: floatStar 15s ease-in-out infinite alternate; }
+.si-star:nth-child(9)  { top: 30%; left: 20%; --tz: -40px;  animation: floatStar 8s ease-in-out infinite alternate; }
+.si-star:nth-child(10) { top: 60%; left: 90%; --tz: -130px; animation: floatStar 17s ease-in-out infinite alternate; }
+
+@keyframes floatStar {
+  from { transform: translate3d(0, 0, var(--tz)) scale(0.8); opacity: 0.2; }
+  to   { transform: translate3d(40px, -40px, var(--tz)) scale(1.2); opacity: 0.6; }
+}
+
+/* ═══════════════════════════════════════
+   3D MAIN WRAPPER LAYOUT
+═══════════════════════════════════════ */
+.si-wrap {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 130px 60px 80px;
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  align-items: center;
+  gap: 80px;
+  transform-style: preserve-3d;
+  /* Updated smoothly by hero-3d.js on desktop */
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateZ(0);
+  will-change: transform;
+}
+
+/* ═══════════════════════════════════════
+   GLASSMORPHIC CARDS (Cockpit Panel Style)
+═══════════════════════════════════════ */
+.si-card-wrap-left,
+.si-card-wrap-right {
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.si-glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 44px 48px;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(255, 0, 127, 0.06);
+  position: relative;
+  transform-style: preserve-3d;
+  transition: border-color 0.4s, box-shadow 0.4s;
+}
+
+.si-glass-panel:hover {
+  border-color: rgba(255, 0, 127, 0.35);
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 25px rgba(255, 0, 127, 0.25);
+}
+
+/* Glowing Neon Brackets inside Cards (HUD indicators) */
+.si-hud-bracket {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid var(--neon-pink);
+  opacity: 0.6;
+  pointer-events: none;
+}
+.si-hud-bracket.tl { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+.si-hud-bracket.tr { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+.si-hud-bracket.bl { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+.si-hud-bracket.br { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+/* ═══════════════════════════════════════
+   LEFT COLUMN — Text Cockpit Panel
+═══════════════════════════════════════ */
+.si-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transform-style: preserve-3d;
+}
+
+/* Eyebrow Code Readout */
+.si-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--neon-pink);
+  margin-bottom: 24px;
+  transform: translateZ(30px);
+  text-shadow: 0 0 8px var(--neon-pink-glow);
+  opacity: 0;
+  animation: siEntryRise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+}
+
+.si-eyebrow-line {
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-pink));
+}
+
+/* Giant Name — Pops forward with 3D text layers & Glitch animation */
+.si-name {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(54px, 8.5vw, 110px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -2px;
+  margin: 0 0 20px;
+  transform-style: preserve-3d;
+  transform: translateZ(65px);
+  opacity: 0;
+  animation: 
+    siEntryRise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards,
+    glitchFlicker 6s infinite;
+}
+
+.si-name-line1 {
+  display: block;
+  color: #ffffff;
+  text-shadow: 
+    0 1px 0 #333,
+    0 2px 0 #222,
+    0 3px 15px var(--neon-cyan-glow);
+}
+
+.si-name-line2 {
+  display: block;
+  background: linear-gradient(135deg, var(--neon-pink) 0%, #ff5e00 50%, var(--neon-pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  text-shadow: 0 4px 15px rgba(255, 0, 127, 0.15);
+}
+
+/* Glitch flickers on Name */
+@keyframes glitchFlicker {
+  0%, 93%, 97%, 100% { transform: translateZ(65px) skewX(0); filter: hue-rotate(0deg) saturate(1); }
+  94% { transform: translateZ(65px) skewX(6deg) scaleY(1.08) translate(-5px, 2px); filter: hue-rotate(60deg) saturate(1.5); }
+  95% { transform: translateZ(65px) skewX(-4deg) scaleY(0.92) translate(4px, -2px); filter: hue-rotate(120deg) saturate(2); }
+  96% { transform: translateZ(65px) skewX(2deg) scaleY(1.03); filter: hue-rotate(240deg) saturate(1.2); }
+}
+
+/* Neon split line with constant gradient sweep */
+.si-name-bar {
+  display: block;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
+  border-radius: 2px;
+  margin-top: 18px;
+  box-shadow: 0 0 15px var(--neon-pink-glow);
+  animation: barGrow 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.8s forwards;
+}
+
+@keyframes barGrow {
+  to { width: 100%; }
+}
+
+/* Cybernetic Code role tag */
+.si-role {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(12px, 1.2vw, 15px);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--neon-cyan);
+  margin-bottom: 24px;
+  transform: translateZ(45px);
+  text-shadow: 0 0 10px var(--neon-cyan-glow);
+  opacity: 0;
+  animation: siEntryRise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+}
+
+.si-role::before {
+  content: '// ';
+  color: var(--neon-pink);
+  margin-right: 5px;
+}
+
+/* Biography description inside glass */
+.si-bio {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(14px, 1.2vw, 16px);
+  font-weight: 400;
+  line-height: 1.8;
+  color: rgba(240, 240, 248, 0.8);
+  max-width: 520px;
+  margin-bottom: 32px;
+  transform: translateZ(20px);
+  opacity: 0;
+  animation: siEntryRise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
+}
+
+/* System Live Status tag */
+.si-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Orbitron', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #00ff66;
+  border: 1px solid rgba(0, 255, 102, 0.3);
+  background: rgba(0, 255, 102, 0.05);
+  padding: 8px 16px;
+  border-radius: 30px;
+  margin-bottom: 40px;
+  width: max-content;
+  transform: translateZ(35px);
+  box-shadow: 0 0 12px rgba(0, 255, 102, 0.1);
+  opacity: 0;
+  animation: siEntryRise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.8s forwards;
+}
+
+.si-ping {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ff66;
+  box-shadow: 0 0 8px #00ff66;
+  animation: siPing 1.8s ease-in-out infinite;
+}
+
+@keyframes siPing {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.3; transform: scale(0.7); }
+}
+
+/* Stats dashboard inside left panel */
+.si-stats {
+  display: flex;
+  gap: 0;
+  margin-bottom: 40px;
+  transform-style: preserve-3d;
+  transform: translateZ(35px);
+  opacity: 0;
+  animation: siEntryRise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.9s forwards;
+}
+
+.si-stat {
+  flex: 1;
+  padding: 18px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.01);
+  transition: border-color 0.3s, background 0.3s, transform 0.3s;
+  cursor: default;
+  transform-style: preserve-3d;
+}
+
+.si-stat:first-child { border-radius: 8px 0 0 8px; }
+.si-stat:last-child  { border-radius: 0 8px 8px 0; }
+
+.si-stat:hover {
+  border-color: var(--neon-cyan-glow);
+  background: rgba(0, 229, 255, 0.04);
+  transform: translateZ(10px) scale(1.02);
+  z-index: 10;
+}
+
+.si-stat-num {
+  display: block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+  color: var(--neon-cyan);
+  line-height: 1;
+  text-shadow: 0 0 12px var(--neon-cyan-glow);
+  transition: text-shadow 0.3s, color 0.3s;
+  transform: translateZ(15px);
+}
+
+.si-stat:hover .si-stat-num {
+  color: var(--neon-pink);
+  text-shadow: 0 0 20px var(--neon-pink-glow);
+}
+
+.si-stat-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(240, 240, 248, 0.45);
+  margin-top: 5px;
+  display: block;
+  transform: translateZ(5px);
+}
+
+/* Call to Action Buttons with glass backdrop */
+.si-ctas {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  transform: translateZ(45px);
+  opacity: 0;
+  animation: siEntryRise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1s forwards;
+}
+
+.si-btn-primary,
+.si-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 38px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.25s,
+              background 0.25s,
+              border-color 0.25s,
+              color 0.25s;
+}
+
+.si-btn-primary {
+  background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 0 15px var(--neon-pink-glow);
+  position: relative;
+  overflow: hidden;
+}
+
+.si-btn-primary:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 35px var(--neon-pink-glow);
+}
+
+.si-btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -80%;
+  width: 40%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-25deg);
+  transition: left 0.6s ease;
+}
+.si-btn-primary:hover::after { left: 140%; }
+
+.si-btn-ghost {
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(240, 240, 248, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(5px);
+}
+
+.si-btn-ghost:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--neon-cyan);
+  color: #ffffff;
+  box-shadow: 0 0 25px var(--neon-cyan-glow);
+}
+
+.si-btn-arrow {
+  transition: transform 0.25s ease;
+}
+.si-btn-primary:hover .si-btn-arrow,
+.si-btn-ghost:hover .si-btn-arrow {
+  transform: translateX(5px);
+}
+
+/* ═══════════════════════════════════════
+   RIGHT COLUMN — Photo Dossier Panel
+═══════════════════════════════════════ */
+.si-photo-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  transform-style: preserve-3d;
+  transform: translateZ(40px);
+  opacity: 0;
+  animation: siEntrySlideLeft 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+
+@keyframes siEntrySlideLeft {
+  from { opacity: 0; transform: translate3d(60px, 0, 40px); }
+  to   { opacity: 1; transform: translate3d(0, 0, 40px); }
+}
+
+.si-photo-frame {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  transform-style: preserve-3d;
+}
+
+/* Concentric HUD orbits (Deep layers) */
+.si-photo-ring {
+  position: absolute;
+  inset: -15px;
+  border-radius: 50%;
+  border: 1.5px dashed var(--neon-pink-glow);
+  animation: ringRotate 14s linear infinite;
+  transform: translateZ(-30px);
+  will-change: transform;
+}
+.si-photo-ring-2 {
+  position: absolute;
+  inset: -30px;
+  border-radius: 50%;
+  border: 1px solid rgba(121, 0, 255, 0.15);
+  animation: ringRotate 24s linear infinite reverse;
+  transform: translateZ(-50px);
+  will-change: transform;
+}
+
+@keyframes ringRotate {
+  to { transform: translateZ(var(--tz, -30px)) rotate(360deg); }
+}
+.si-photo-ring { --tz: -30px; }
+.si-photo-ring-2 { --tz: -50px; }
+
+/* Portrait circle */
+.si-photo-circle {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--neon-pink);
+  box-shadow:
+    0 0 35px var(--neon-pink-glow),
+    inset 0 0 30px rgba(0, 0, 0, 0.6);
+  transform: translateZ(10px);
+  transition: transform 0.4s ease, box-shadow 0.4s;
+}
+
+.si-photo-circle:hover {
+  box-shadow:
+    0 0 55px rgba(255, 0, 127, 0.6),
+    inset 0 0 30px rgba(0, 0, 0, 0.6);
+}
+
+.si-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: saturate(1.1) contrast(1.05) brightness(0.95);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s;
+}
+
+.si-photo-circle:hover .si-photo-img {
+  transform: scale(1.06);
+  filter: saturate(1.25) contrast(1.08) brightness(1.02);
+}
+
+/* Translucent HUD reticle floating in front of photo */
+.si-photo-hud {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translateZ(55px);
+  transform-style: preserve-3d;
+  z-index: 10;
+}
+
+.hud-circle-outer {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  animation: ringRotateHUD 16s linear infinite;
+  will-change: transform;
+}
+
+.hud-reticle {
+  position: absolute;
+  inset: 35px;
+  border-radius: 50%;
+  border: 1px dashed rgba(0, 229, 255, 0.2);
+  animation: ringRotateHUD 25s linear infinite reverse;
+}
+.hud-reticle::before,
+.hud-reticle::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  background: var(--neon-cyan);
+  opacity: 0.6;
+}
+.hud-reticle::before { width: 20px; height: 1px; transform: translate(-50%, -50%); }
+.hud-reticle::after  { width: 1px; height: 20px; transform: translate(-50%, -50%); }
+
+@keyframes ringRotateHUD {
+  to { transform: rotate(360deg); }
+}
+
+/* Data readouts overlay */
+.hud-data-readout {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--neon-cyan);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: rgba(10, 8, 24, 0.9);
+  padding: 4px 10px;
+  border-radius: 4px;
+  border-left: 2.5px solid var(--neon-cyan);
+  text-shadow: 0 0 6px var(--neon-cyan-glow);
+}
+
+/* Portrait Sweep Line */
+.si-scan {
+  position: absolute;
+  left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--neon-cyan-glow) 15%,
+    #ffffff 50%,
+    var(--neon-cyan-glow) 85%,
+    transparent 100%
+  );
+  filter: blur(0.5px);
+  opacity: 0;
+  animation: scanDown 5s ease-in-out 1.5s infinite;
+  pointer-events: none;
+  z-index: 5;
+}
+
+@keyframes scanDown {
+  0%   { top: 0%; opacity: 0; }
+  5%   { opacity: 0.8; }
+  90%  { opacity: 0.8; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Tech pills below avatar */
+.si-tech-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  max-width: 380px;
+  transform-style: preserve-3d;
+  transform: translateZ(35px);
+  opacity: 0;
+  animation: siEntryRise 0.6s ease 1.1s forwards;
+}
+
+.si-pill {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 15px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(240, 240, 248, 0.75);
+  transition: border-color 0.25s, color 0.25s, background 0.25s, transform 0.25s;
+  cursor: default;
+  transform-style: preserve-3d;
+}
+
+.si-pill:hover {
+  border-color: var(--neon-cyan);
+  color: var(--neon-cyan);
+  background: rgba(0, 229, 255, 0.05);
+  transform: translateZ(8px) scale(1.05);
+}
+
+/* Cockpit decorative quote tag */
+.si-quote {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 18px;
+  width: 100%;
+  transform: translateZ(25px);
+  opacity: 0;
+  animation: siEntryRise 0.6s ease 1.3s forwards;
+  transition: color 0.3s;
+}
+.si-photo-col:hover .si-quote {
+  color: var(--neon-pink);
+}
+
+/* ═══════════════════════════════════════
+   SCROLL INDICATOR (3D float setup)
+═══════════════════════════════════════ */
+.si-scroll {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translate3d(-50%, 0, 35px);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: siEntryRise 0.7s ease 1.6s forwards;
+}
+
+.si-scroll-mouse {
+  width: 22px;
+  height: 34px;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: 11px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+  animation: mouseFloat 2s ease-in-out infinite;
+}
+
+@keyframes mouseFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+
+.si-scroll-wheel {
+  width: 3.5px;
+  height: 7px;
+  background: var(--neon-cyan);
+  border-radius: 3px;
+  animation: wheelScroll 1.8s ease-in-out infinite;
+  box-shadow: 0 0 6px var(--neon-cyan-glow);
+}
+
+@keyframes wheelScroll {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50%       { transform: translateY(7px); opacity: 0; }
+}
+
+.si-scroll-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(240, 240, 248, 0.35);
+}
+
+/* ═══════════════════════════════════════
+   SHARED MOVEMENT ALIGNMENTS
+═══════════════════════════════════════ */
+@keyframes siEntryRise {
+  from { opacity: 0; transform: translate3d(0, 20px, var(--tz, 0px)); }
+  to   { opacity: 1; transform: translate3d(0, 0, var(--tz, 0px)); }
+}
+
+.si-eyebrow { --tz: 30px; }
+.si-role { --tz: 45px; }
+.si-bio { --tz: 20px; }
+.si-status { --tz: 35px; }
+.si-stats { --tz: 35px; }
+.si-ctas { --tz: 45px; }
+.si-tech-pills { --tz: 35px; }
+.si-quote { --tz: 25px; }
+.si-scroll { --tz: 35px; }
+
+/* ═══════════════════════════════════════
+   RESPONSIVENESS (degrades cleanly to flat glass)
+═══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  /* Disable 3D tilt adjustments for touch screens & performance */
+  .si-wrap {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    padding: 120px 40px 110px;
+    gap: 60px;
+    text-align: center;
+    transform: none !important;
+  }
+
+  .si-glass-panel {
+    padding: 36px 32px;
+  }
+
+  .si-photo-col {
+    order: -1;
+    transform: none !important;
+  }
+
+  .si-eyebrow,
+  .si-status {
+    justify-content: center;
+  }
+
+  .si-bio {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .si-stats {
+    justify-content: center;
+  }
+
+  .si-ctas {
+    justify-content: center;
+  }
+
+  .si-name {
+    font-size: clamp(48px, 12vw, 90px);
+  }
+
+  .si-photo-frame {
+    width: 300px;
+    height: 300px;
+  }
+
+  .si-photo-circle {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 600px) {
+  .si-wrap {
+    padding: 100px 24px 110px;
+    gap: 44px;
+  }
+
+  .si-glass-panel {
+    padding: 24px 16px;
+  }
+
+  .si-name {
+    font-size: clamp(32px, 9vw, 46px);
+    letter-spacing: -1px;
+  }
+
+  .si-stat {
+    padding: 12px 10px;
+  }
+
+  .si-stat-num {
+    font-size: 30px;
+  }
+
+  .si-stat-label {
+    font-size: 7.5px;
+    letter-spacing: 1px;
+  }
+
+  .si-photo-frame {
+    width: 240px;
+    height: 240px;
+  }
+
+  .si-photo-circle {
+    width: 240px;
+    height: 240px;
+  }
+
+  .si-ctas {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .si-btn-primary,
+  .si-btn-ghost {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .si-3d-grid-floor {
+    bottom: -100px;
+    height: 35vh;
+  }
+}
